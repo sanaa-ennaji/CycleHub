@@ -1,6 +1,7 @@
 # RecycleHub
-
-![RecycleHub Logo](logo.webp)
+<!-- 
+![RecycleHub Logo](logo.webp) -->
+<img src="logo.webp" alt="Alt Text" width="400" height="200">
 
 RecycleHub is a recycling management application that connects individuals with certified waste collectors. The project is developed as a Single Page Application (SPA) using Angular for the front-end. This application aims to automate and streamline the recycling process, making it easier for users to manage waste collection requests.
 
