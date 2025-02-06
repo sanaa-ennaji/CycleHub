@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
-import { FormBuilder, FormGroup, Validators,ReactiveFormsModule } from '@angular/forms';
-import { Store} from '@ngrx/store';
+import { FormBuilder, FormGroup, Validators, ReactiveFormsModule } from '@angular/forms';
+import { Store } from '@ngrx/store';
 import { registerUser } from '../../../store/auth/auth.actions';
 import { User } from '../../../models/user.model';
 import { Router } from '@angular/router';
@@ -37,9 +37,7 @@ export class RegisterComponent {
     if (this.registerForm.valid) {
       const user: User = this.registerForm.value;
       this.store.dispatch(registerUser({ user }));
-
-      alert('Registration Successful! Redirecting to Dashboard...');
-      this.router.navigate(['/dashboard']);
+      this.router.navigate(['/']);
     }
   }
 }

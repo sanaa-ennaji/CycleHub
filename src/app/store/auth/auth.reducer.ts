@@ -1,19 +1,16 @@
 import { createReducer, on } from '@ngrx/store';
 import { registerUser } from './auth.actions';
-import { User } from '../../models/user.model';
+import { AuthState } from './auth.state';
 
-export interface AuthState {
-    user: User | null;
-  }
   
   const initialState: AuthState = {
-    user: JSON.parse(localStorage.getItem('user') || 'null'),
+    user: typeof window !== 'undefined' ? JSON.parse(localStorage.getItem('user') || 'null') : null,
   };
   
   export const authReducer = createReducer(
     initialState,
     on(registerUser, (state, { user }) => {
-      if (typeof window !== 'undefined' && window.localStorage) {
+      if (typeof window !== 'undefined') {
         localStorage.setItem('user', JSON.stringify(user));
       }
       return { ...state, user };
