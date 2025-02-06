@@ -13,7 +13,10 @@ export interface AuthState {
   export const authReducer = createReducer(
     initialState,
     on(registerUser, (state, { user }) => {
-      localStorage.setItem('user', JSON.stringify(user));
+      if (typeof window !== 'undefined' && window.localStorage) {
+        localStorage.setItem('user', JSON.stringify(user));
+      }
       return { ...state, user };
     })
   );
+  
