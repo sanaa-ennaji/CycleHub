@@ -5,3 +5,10 @@ export const registerUser = createAction(
     '[Auth] Register User',
     props<{ user: User }>()
   );
+
+  export const loginUser = createAction(
+    '[Auth] Login User',
+    props <{email:string; password: string}>()
+  );
+
+  export const logoutUser = createAction('[Auth]Logout User');

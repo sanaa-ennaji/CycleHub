@@ -1,12 +1,12 @@
 import { createReducer, on } from '@ngrx/store';
 import { registerUser } from './auth.actions';
-import { loginUserSuccess , loginUserFailure } from '../auth.actions';
 import { User } from "../../models/user.model";
 
 export interface AuthState {
     users: User[];
   }
   
+
   const initialState: AuthState = {
     users: typeof window !== 'undefined' ? JSON.parse(localStorage.getItem('users') || '[]') : [],
   };
@@ -21,11 +21,6 @@ export interface AuthState {
       }
   
       return { ...state, users: updatedUsers };
-    }),   on(loginUserSuccess, (state, { user }) => {
-      return { ...state, user, error: null };
-    }),
-    on(loginUserFailure, (state, { error }) => {
-      return { ...state, error, user: null }; 
     })
   );
   
