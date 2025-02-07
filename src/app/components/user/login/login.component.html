@@ -9,12 +9,13 @@
 <form class="max-w-sm mx-auto">
     <div class="mb-5">
       <label for="email" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">email</label>
-      <input type="email" [(ngModel)]="email" id="email" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-green-500 focus:border-green-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-green-500 dark:focus:border-green-500" placeholder="name@flowbite.com" required />
+      <input type="email" [(ngModel)]="email" id="email" name="email" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-green-500 focus:border-green-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-green-500 dark:focus:border-green-500" placeholder="name@gmail.com" required />
     </div>
     <div class="">
       <label for="password" class="block  text-sm font-medium text-gray-900 dark:text-white">password</label>
-      <input type="password" [(ngModel)]="password" id="password" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-green-500 focus:border-green-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-green-500 dark:focus:border-green-500" required />
+      <input type="password" [(ngModel)]="password" id="password" name="password" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-green-500 focus:border-green-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-green-500 dark:focus:border-green-500" required />
     </div>
+    <p *ngIf="errorMessage" style="color: red;">{{ errorMessage }}</p>
     <div class="flex items-start my-5">
         <a (click)="navigateToRegister()" >
             <p class="ms-2 text-sm font-medium text-green-600 hover:underline dark:text-green-500">You don't have an account ?</p>

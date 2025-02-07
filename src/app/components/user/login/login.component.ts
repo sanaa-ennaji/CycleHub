@@ -26,10 +26,19 @@ export class LoginComponent {
 
   email = '';
   password = '';
+  errorMessage = '';
 
 
   login() {
     this.store.dispatch(loginUser({ email: this.email, password: this.password }));
+
+      this.store.select('auth').subscribe((authState) => {
+        if (authState.currentUser) {
+          this.router.navigate(['/register']); 
+        } else {
+          this.errorMessage = 'Invalid email or password'; 
+        }
+    });
   }
 
   logout() {
