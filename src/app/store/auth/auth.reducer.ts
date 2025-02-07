@@ -1,5 +1,5 @@
 import { createReducer, on } from '@ngrx/store';
-import { registerUser , loginUser, logoutUser} from './auth.actions';
+import { registerUser , loginUser, logoutUser, loginFailure, loginSuccess} from './auth.actions';
 import { User } from "../../models/user.model";
 
 export interface AuthState {
@@ -25,20 +25,30 @@ export interface AuthState {
   
       return { ...state, users: updatedUsers };
     }),
- // login 
     on(loginUser, (state, { email, password }) => {
-      const user = state.users.find((u) => u.email === email && u.password === password);
+      const foundUser = state.users.find(user => user.email === email && user.password === password);
   
-      if (user) {
+      if (foundUser) {
         if (typeof window !== 'undefined') {
-          localStorage.setItem('currentUser', JSON.stringify(user));
+          localStorage.setItem('currentUser', JSON.stringify(foundUser));
         }
-        return { ...state, currentUser: user };
+        return { ...state, currentUser: foundUser, error: null };
       } else {
-        console.error('Invalid email or password');
-        return state;
+        return { ...state, currentUser: null, error: 'Invalid email or password' };
       }
     }),
+  
+    on(loginSuccess, (state, { user }) => ({
+      ...state,
+      currentUser: user,
+      error: null
+    })),
+  
+    on(loginFailure, (state) => ({
+      ...state,
+      currentUser: null,
+      error: 'Invalid email or password'
+    })),
   
     // Logout 
     on(logoutUser, (state) => {
