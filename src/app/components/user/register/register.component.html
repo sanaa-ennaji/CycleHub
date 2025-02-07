@@ -1,5 +1,11 @@
 <app-navbar></app-navbar>
-<form [formGroup]="registerForm" (ngSubmit)="onRegister()" class="max-w-md mt-30 mx-auto">
+
+<div class="sm:mx-auto sm:w-full sm:max-w-sm mt-15">
+  <img class="mx-auto h-20 w-20" src="/assets/logo.jpg" alt="logo">
+  <h2 class="mt-10 text-center text-2xl/9 font-bold tracking-tight ">Sign in to your account</h2>
+</div>
+
+<form [formGroup]="registerForm" (ngSubmit)="onRegister()" class="max-w-md mt-4 mx-auto">
   <div class="relative z-0 w-full mb-5 group">
       <input formControlName="email" type="email" id="email"  class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-green-500 focus:outline-none focus:ring-0 focus:border-green-600 peer" placeholder=" " required />
       <label for="email" class="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto peer-focus:text-green-600 peer-focus:dark:text-green-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">Email address</label>
