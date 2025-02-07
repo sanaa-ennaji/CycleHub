@@ -10,7 +10,8 @@ import { RouterModule } from '@angular/router';
 export class NavbarComponent {
 
   imagePath = 'assets/logo.jpg';
-  handleImageError() {
-    this.imagePath = 'assets/fallback-logo.jpg'; 
+
+  constructor() {
+    console.log("Image Path:", this.imagePath);
   }
 }
