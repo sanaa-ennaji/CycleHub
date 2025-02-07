@@ -1,0 +1,45 @@
+<form [formGroup]="requestForm" (ngSubmit)="onSubmit()">
+    <div>
+      <label for="wasteType">Type de déchet:</label>
+      <select id="wasteType" formControlName="wasteType">
+        <option value="plastique">Plastique</option>
+        <option value="verre">Verre</option>
+        <option value="papier">Papier</option>
+        <option value="metal">Métal</option>
+      </select>
+    </div>
+  
+    <div>
+      <label for="estimatedWeight">Poids estimé (en grammes):</label>
+      <input id="estimatedWeight" type="number" formControlName="estimatedWeight" />
+      <small *ngIf="requestForm.get('estimatedWeight')?.hasError('min')">
+        Le poids minimum est de 1000g.
+      </small>
+    </div>
+  
+    <div>
+      <label for="collectionAddress">Adresse de collecte:</label>
+      <input id="collectionAddress" type="text" formControlName="collectionAddress" />
+    </div>
+  
+    <div>
+      <label for="collectionDate">Date de collecte:</label>
+      <input id="collectionDate" type="date" formControlName="collectionDate" />
+    </div>
+  
+    <div>
+      <label for="collectionTimeSlot">Créneau horaire:</label>
+      <select id="collectionTimeSlot" formControlName="collectionTimeSlot">
+        <option value="09:00-12:00">09:00 - 12:00</option>
+        <option value="12:00-15:00">12:00 - 15:00</option>
+        <option value="15:00-18:00">15:00 - 18:00</option>
+      </select>
+    </div>
+  
+    <div>
+      <label for="additionalNotes">Notes supplémentaires:</label>
+      <textarea id="additionalNotes" formControlName="additionalNotes"></textarea>
+    </div>
+  
+    <button type="submit" [disabled]="requestForm.invalid">Soumettre</button>
+  </form>
