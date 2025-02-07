@@ -1,9 +1,10 @@
 import { createReducer, on } from '@ngrx/store';
-import { addRequest, updateRequest, deleteRequest } from './waste-collection.actions';
-import {Collection } from '../../models/Collection.model';
+import { addRequest, updateRequest, deleteRequest } from './collection.actions';
+import {CollectionState   } from './collection.state'
 
-
-
+const initialState: CollectionState = {
+    requests: [],
+  };
 export const wasteCollectionReducer = createReducer(
   initialState,
   on(addRequest, (state, { request }) => ({

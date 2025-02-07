@@ -4,6 +4,3 @@ export interface CollectionState {
   requests: Collection[];
 }
 
-const initialState: CollectionState = {
-  requests: [],
-};
