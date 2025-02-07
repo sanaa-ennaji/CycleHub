@@ -14,7 +14,7 @@ import { LoginComponent } from '../login/login.component';
   templateUrl: './register.component.html',
   standalone: true,
   styleUrls: ['./register.component.css'],
-  imports: [ReactiveFormsModule, CommonModule , NavbarComponent, LoginComponent],
+  imports: [ReactiveFormsModule, CommonModule , NavbarComponent],
 })
 export class RegisterComponent {
   registerForm: FormGroup;
