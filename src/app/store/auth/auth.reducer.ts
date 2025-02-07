@@ -15,6 +15,7 @@ export interface AuthState {
   
   export const authReducer = createReducer(
     initialState,
+    // register 
     on(registerUser, (state, { user }) => {
       const updatedUsers = [...state.users, user]; 
   
@@ -24,7 +25,7 @@ export interface AuthState {
   
       return { ...state, users: updatedUsers };
     }),
- // login user
+ // login 
     on(loginUser, (state, { email, password }) => {
       const user = state.users.find((u) => u.email === email && u.password === password);
   
@@ -39,7 +40,7 @@ export interface AuthState {
       }
     }),
   
-    // Logout User
+    // Logout 
     on(logoutUser, (state) => {
       if (typeof window !== 'undefined') {
         localStorage.removeItem('currentUser');

@@ -1,15 +1,16 @@
-import { Component } from '@angular/core';
+import { Component, NgModule } from '@angular/core';
 import { Router } from '@angular/router';
 import { loginUser, logoutUser } from '../../../store/auth/auth.actions';
 import { AuthState } from '../../../store/auth/auth.reducer';
 import { CommonModule } from '@angular/common';
 import { Store } from '@ngrx/store';
 import { NavbarComponent } from '../../../Shared/navbar/navbar.component';
+import { FormsModule } from '@angular/forms';
 
 
 @Component({
   selector: 'app-login',
-  imports: [ CommonModule, NavbarComponent],
+  imports: [ CommonModule, NavbarComponent , FormsModule],
   standalone: true,
   templateUrl: './login.component.html',
   styleUrl: './login.component.css'
