@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { RouterModule } from '@angular/router';
+import { Router } from '@angular/router';
 @Component({
   selector: 'app-navbar',
   imports: [RouterModule],
@@ -11,7 +12,8 @@ export class NavbarComponent {
 
   imagePath = 'assets/logo.jpg';
 
-  constructor() {
-    console.log("Image Path:", this.imagePath);
+  constructor(private router: Router) {}
+  navigateToRegister() {
+    this.router.navigate(['/register']);
   }
 }

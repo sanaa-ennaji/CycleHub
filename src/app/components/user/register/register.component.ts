@@ -5,6 +5,7 @@ import { registerUser } from '../../../store/auth/auth.actions';
 import { User } from '../../../models/user.model';
 import { Router } from '@angular/router';
 import { CommonModule } from '@angular/common';
+import { NavbarComponent } from '../../../Shared/navbar/navbar.component';
 
 
 @Component({
@@ -12,7 +13,7 @@ import { CommonModule } from '@angular/common';
   templateUrl: './register.component.html',
   standalone: true,
   styleUrls: ['./register.component.css'],
-  imports: [ReactiveFormsModule, CommonModule],
+  imports: [ReactiveFormsModule, CommonModule , NavbarComponent],
 })
 export class RegisterComponent {
   registerForm: FormGroup;
