@@ -6,6 +6,7 @@ import { User } from '../../../models/user.model';
 import { Router } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { NavbarComponent } from '../../../Shared/navbar/navbar.component';
+import { LoginComponent } from '../login/login.component';
 
 
 @Component({
@@ -13,7 +14,7 @@ import { NavbarComponent } from '../../../Shared/navbar/navbar.component';
   templateUrl: './register.component.html',
   standalone: true,
   styleUrls: ['./register.component.css'],
-  imports: [ReactiveFormsModule, CommonModule , NavbarComponent],
+  imports: [ReactiveFormsModule, CommonModule , NavbarComponent, LoginComponent],
 })
 export class RegisterComponent {
   registerForm: FormGroup;
@@ -22,7 +23,9 @@ export class RegisterComponent {
     private fb: FormBuilder,
     private store: Store,
     private router: Router
-  ) {
+    
+  )
+   {
     this.registerForm = this.fb.group({
       email: ['', [Validators.required, Validators.email]],
       password: ['', [Validators.required, Validators.minLength(6)]],
@@ -32,6 +35,7 @@ export class RegisterComponent {
       phone: ['', Validators.required],
       birthDate: ['', Validators.required],
     });
+
   }
 
   onRegister() {
@@ -41,4 +45,8 @@ export class RegisterComponent {
       this.router.navigate(['/']);
     }
   }
+  navigateToLogin() {
+    this.router.navigate(['/login']);
+  }
+
 }
