@@ -1,14 +1,16 @@
 import { createReducer, on } from '@ngrx/store';
-import { registerUser } from './auth.actions';
+import { registerUser , loginUser, logoutUser} from './auth.actions';
 import { User } from "../../models/user.model";
 
 export interface AuthState {
     users: User[];
+    currentUser: User | null;
   }
   
 
   const initialState: AuthState = {
     users: typeof window !== 'undefined' ? JSON.parse(localStorage.getItem('users') || '[]') : [],
+    currentUser: typeof window !== 'undefined' ? JSON.parse(localStorage.getItem('currentUser') || 'null') : null,
   };
   
   export const authReducer = createReducer(
@@ -21,6 +23,28 @@ export interface AuthState {
       }
   
       return { ...state, users: updatedUsers };
+    }),
+ // login user
+    on(loginUser, (state, { email, password }) => {
+      const user = state.users.find((u) => u.email === email && u.password === password);
+  
+      if (user) {
+        if (typeof window !== 'undefined') {
+          localStorage.setItem('currentUser', JSON.stringify(user));
+        }
+        return { ...state, currentUser: user };
+      } else {
+        console.error('Invalid email or password');
+        return state;
+      }
+    }),
+  
+    // Logout User
+    on(logoutUser, (state) => {
+      if (typeof window !== 'undefined') {
+        localStorage.removeItem('currentUser');
+      }
+      return { ...state, currentUser: null };
     })
   );
   
