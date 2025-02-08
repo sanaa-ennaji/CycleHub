@@ -1,36 +1,43 @@
 import { Component } from '@angular/core';
-import { FormBuilder, FormGroup, Validators, ReactiveFormsModule } from '@angular/forms';
-import { CommonModule } from '@angular/common';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Store } from '@ngrx/store';
+import { addRequest } from '../../../store/collection/collection.actions';
+import { Collection } from '../../../models/Collection.model';
+
 @Component({
   selector: 'app-demande-request',
-  standalone: true,
-  imports: [ReactiveFormsModule, CommonModule],
   templateUrl: './demande-request.component.html',
-  styleUrl: './demande-request.component.css'
+  styleUrls: ['./demande-request.component.css']
 })
 export class DemandeRequestComponent {
   requestForm: FormGroup;
 
-  constructor(private fb: FormBuilder) {
+  constructor(private fb: FormBuilder, private store: Store) {
     this.requestForm = this.fb.group({
       wasteType: ['', Validators.required],
-      photos: [[]],
       estimatedWeight: ['', [Validators.required, Validators.min(1000)]],
       Address: ['', Validators.required],
       Date: ['', Validators.required],
       TimeSlot: ['', Validators.required],
-      additionalNotes: [''],
+      additionalNotes: ['']
     });
   }
 
   onSubmit() {
     if (this.requestForm.valid) {
-      const request = {
+      const request: Collection = {
         ...this.requestForm.value,
-        status: 'en attente',
+        id: this.generateId(), 
+        status: 'en attente'
       };
       console.log('Request submitted:', request);
-     
+      this.store.dispatch(addRequest({ request }));
+    } else {
+      console.error('Form is invalid');
     }
+  }
+
+  private generateId(): string {
+    return Math.random().toString(36).substr(2, 9);
   }
 }
