@@ -11,6 +11,7 @@ import { CommonModule } from '@angular/common';
   templateUrl: './demande-request.component.html',
   styleUrls: ['./demande-request.component.css']
 })
+
 export class DemandeRequestComponent {
   requestForm: FormGroup;
 
@@ -29,11 +30,11 @@ export class DemandeRequestComponent {
     if (this.requestForm.valid) {
       const request: Collection = {
         ...this.requestForm.value,
-        id: this.generateId(), 
+        id: this.generateId(),
         status: 'PENDING'
       };
       this.store.dispatch(addRequest({ request }));
-      this.requestForm.reset();
+      this.requestForm.reset(); 
     } else {
       console.error('Form is invalid');
     }
