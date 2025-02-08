@@ -26,7 +26,6 @@ const saveStateToLocalStorage = (state: CollectionState) => {
     } else {
         console.log('Window is undefined. Skipping localStorage save.'); // Debug
       }
-
   } catch (error) {
     console.error('Error saving state to localStorage:', error);
   }
