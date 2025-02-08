@@ -33,6 +33,7 @@ export class DemandeRequestComponent {
         status: 'PENDING'
       };
       this.store.dispatch(addRequest({ request }));
+      this.requestForm.reset();
     } else {
       console.error('Form is invalid');
     }
