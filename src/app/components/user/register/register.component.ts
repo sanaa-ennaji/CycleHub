@@ -6,7 +6,6 @@ import { User } from '../../../models/user.model';
 import { Router } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { NavbarComponent } from '../../../Shared/navbar/navbar.component';
-import { LoginComponent } from '../login/login.component';
 
 
 @Component({

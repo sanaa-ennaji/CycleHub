@@ -30,9 +30,8 @@ export class DemandeRequestComponent {
       const request: Collection = {
         ...this.requestForm.value,
         id: this.generateId(), 
-        status: 'en attente'
+        status: 'PENDING'
       };
-      console.log('Request submitted:', request);
       this.store.dispatch(addRequest({ request }));
     } else {
       console.error('Form is invalid');
