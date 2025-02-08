@@ -1,45 +1,106 @@
-<form [formGroup]="requestForm" (ngSubmit)="onSubmit()">
-    <div>
-      <label for="wasteType">Type de déchet:</label>
-      <select id="wasteType" formControlName="wasteType">
-        <option value="plastique">Plastique</option>
-        <option value="verre">Verre</option>
-        <option value="papier">Papier</option>
-        <option value="metal">Métal</option>
-      </select>
+<div class="sm:mx-auto sm:w-full sm:max-w-sm mt-10">
+  <h2 class="mt-10 text-center text-2xl/9 font-bold tracking-tight">
+    Create demande request
+  </h2>
+</div>
+<form
+  [formGroup]="requestForm"
+  (ngSubmit)="onSubmit()"
+  class="max-w-md mt-4 mx-auto h-auto">
+  <div class="mt-10 grid grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6">
+    <div class="sm:col-span-3">
+      <label for="wasteType" class="block text-sm/6 font-medium text-gray-900"
+        >Type de déchet:</label
+      >
+      <div class="grid grid-cols-1">
+        <select
+          id="wasteType"
+          formControlName="wasteType"
+          class="col-start-1 row-start-1 w-full appearance-none rounded-md bg-white py-1.5 pr-8 pl-3 text-base text-gray-900 outline-1 -outline-offset-1 outline-gray-300 focus:outline-2 focus:-outline-offset-2 focus:outline-green-600 sm:text-sm/6"
+        >
+          <option value="PLASTIC">Plastic</option>
+          <option value="GLASS">Glass</option>
+          <option value="PAPER">Paper</option>
+          <option value="METAL">Metal</option>
+        </select>
+        <svg
+          class="pointer-events-none col-start-1 row-start-1 mr-2 size-5 self-center justify-self-end text-gray-500 sm:size-4"
+          viewBox="0 0 16 16"
+          fill="currentColor"
+          aria-hidden="true"
+          data-slot="icon"
+        >
+          <path
+            fill-rule="evenodd"
+            d="M4.22 6.22a.75.75 0 0 1 1.06 0L8 8.94l2.72-2.72a.75.75 0 1 1 1.06 1.06l-3.25 3.25a.75.75 0 0 1-1.06 0L4.22 7.28a.75.75 0 0 1 0-1.06Z"
+            clip-rule="evenodd"
+          />
+        </svg>
+      </div>
     </div>
-  
-    <div>
-      <label for="estimatedWeight">Poids estimé (en grammes):</label>
-      <input id="estimatedWeight" type="number" formControlName="estimatedWeight" />
+    <div class="sm:col-span-3">
+      <label
+        for="estimatedWeight"
+        class="block text-sm/6 font-medium text-gray-900"
+        >Poids estimé (en grammes):</label
+      >
+      <input
+        id="estimatedWeight"
+        type="number"
+        formControlName="estimatedWeight"
+        class="block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline-2 focus:-outline-offset-2 focus:outline-green-600 sm:text-sm/6"
+      />
       <small *ngIf="requestForm.get('estimatedWeight')?.hasError('min')">
         Le poids minimum est de 1000g.
       </small>
     </div>
-  
-    <div>
-      <label for="collectionAddress">Adresse de collecte:</label>
-      <input id="collectionAddress" type="text" formControlName="collectionAddress" />
+  </div>
+
+  <div class="mt-5 grid grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6">
+    <div class="sm:col-span-3">
+      <label
+        for="Address"
+        class="block text-sm/6 font-medium text-gray-900"
+        >Adresse de collecte:</label
+      >
+      <input
+        id="Address"
+        type="text"
+        formControlName="Address"
+        class="block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline-2 focus:-outline-offset-2 focus:outline-green-600 sm:text-sm/6"
+      />
     </div>
-  
-    <div>
-      <label for="collectionDate">Date de collecte:</label>
-      <input id="collectionDate" type="date" formControlName="collectionDate" />
+    <div class="sm:col-span-3">
+      <label
+        for="Date"
+        class="block text-sm/6 font-medium text-gray-900"
+        >Date de collecte:</label
+      >
+      <input
+        id="Date"
+        type="date"
+        formControlName="Date"
+        class="block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline-2 focus:-outline-offset-2 focus:outline-green-600 sm:text-sm/6"
+      />
     </div>
-  
-    <div>
-      <label for="collectionTimeSlot">Créneau horaire:</label>
-      <select id="collectionTimeSlot" formControlName="collectionTimeSlot">
+  </div>
+
+ 
+    <div class="mt-5 block text-sm/6 font-medium text-gray-900">
+      <label for="TimeSlot" class="block text-sm/6 font-medium text-gray-900">Créneau horaire:</label>
+      <select id="TimeSlot" formControlName="TimeSlot"  class="col-start-1 row-start-1 w-full appearance-none rounded-md bg-white py-1.5 pr-8 pl-3 text-base text-gray-900 outline-1 -outline-offset-1 outline-gray-300 focus:outline-2 focus:-outline-offset-2 focus:outline-green-600 sm:text-sm/6">
         <option value="09:00-12:00">09:00 - 12:00</option>
         <option value="12:00-15:00">12:00 - 15:00</option>
         <option value="15:00-18:00">15:00 - 18:00</option>
       </select>
     </div>
-  
-    <div>
-      <label for="additionalNotes">Notes supplémentaires:</label>
-      <textarea id="additionalNotes" formControlName="additionalNotes"></textarea>
+    <div class="mt-5">
+      <label for="additionalNotes" class="block text-sm/6 font-medium text-gray-900">Notes supplémentaires:</label>
+      <textarea
+        id="additionalNotes"
+        formControlName="additionalNotes"
+        class="col-start-1 row-start-1 w-full appearance-none rounded-md bg-white py-1.5 pr-8 pl-3 text-base text-gray-900 outline-1 -outline-offset-1 outline-gray-300 focus:outline-2 focus:-outline-offset-2 focus:outline-green-600 sm:text-sm/6"
+      ></textarea>
     </div>
-  
-    <button type="submit" [disabled]="requestForm.invalid">Soumettre</button>
-  </form>
+  <button type="submit" [disabled]="requestForm.invalid" class="mt-5 text-white bg-green-700 hover:bg-green-800 focus:ring-4 focus:outline-none focus:ring-green-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800">Soumettre</button>
+</form>
