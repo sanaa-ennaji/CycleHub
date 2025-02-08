@@ -33,11 +33,16 @@ export class DemandeRequestComponent {
         id: this.generateId(),
         status: 'PENDING'
       };
+      console.log('Dispatching addRequest action with request:', request); // Debug
       this.store.dispatch(addRequest({ request }));
-      this.requestForm.reset(); 
+      this.requestForm.reset(); // Reset the form after submission
     } else {
-      console.error('Form is invalid');
+      console.error('Form is invalid'); // Debug
     }
+  }
+
+  private generateId(): string {
+    return Math.random().toString(36).substr(2, 9);
   }
 
   private generateId(): string {
