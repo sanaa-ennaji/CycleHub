@@ -9,7 +9,6 @@ const initialState: CollectionState = {
 
 export const wasteCollectionReducer = createReducer(
   initialState,
-  // Add a request
   on(addRequest, (state, { request }) => {
     const updatedRequests = [...state.requests, request];
     if (typeof window !== 'undefined') {
