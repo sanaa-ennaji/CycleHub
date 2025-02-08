@@ -14,9 +14,7 @@ const getInitialState = (): CollectionState => {
   }
   return { requests: [] };
 };
-
 const initialState: CollectionState = getInitialState();
-
 const saveStateToLocalStorage = (state: CollectionState) => {
   try {
     if (typeof window !== 'undefined') {
@@ -30,7 +28,6 @@ const saveStateToLocalStorage = (state: CollectionState) => {
     console.error('Error saving state to localStorage:', error);
   }
 };
-
 export const wasteCollectionReducer = createReducer(
   initialState,
   on(addRequest, (state, { request }) => {
