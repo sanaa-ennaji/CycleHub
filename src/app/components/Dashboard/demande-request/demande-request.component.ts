@@ -35,14 +35,10 @@ export class DemandeRequestComponent {
       };
       console.log('Dispatching addRequest action with request:', request); // Debug
       this.store.dispatch(addRequest({ request }));
-      this.requestForm.reset(); // Reset the form after submission
+      // this.requestForm.reset(); 
     } else {
-      console.error('Form is invalid'); // Debug
+      console.error('Form is invalid'); 
     }
-  }
-
-  private generateId(): string {
-    return Math.random().toString(36).substr(2, 9);
   }
 
   private generateId(): string {
