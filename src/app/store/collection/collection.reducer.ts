@@ -23,7 +23,10 @@ const saveStateToLocalStorage = (state: CollectionState) => {
         console.log('Attempting to save state to localStorage:', state);
       localStorage.setItem('collectionState', JSON.stringify(state));
       console.log('State saved to localStorage successfully.'); 
-    }
+    } else {
+        console.log('Window is undefined. Skipping localStorage save.'); // Debug
+      }
+
   } catch (error) {
     console.error('Error saving state to localStorage:', error);
   }
