@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators , ReactiveFormsModule} from '@angular/forms';
 import { Store } from '@ngrx/store';
+import { addCollection } from '../../../store/collection/collection.actions';
 import { Collection } from '../../../models/Collection.model';
 import { CommonModule } from '@angular/common';
 import { Status } from '../../../models/Status.enum';
@@ -13,41 +14,38 @@ import { Status } from '../../../models/Status.enum';
 })
 
 export class DemandeRequestComponent {
-  
-  collection: Omit<Collection, 'id' | 'status'> = {
-    wasteType: WasteType.PLASTIC,
-    estimatedWeight: 0,
-    Address: '',
-    Date: '',
-    TimeSlot: '',
-    additionalNotes: '',
-    photos: [],
-  };
+  requestForm: FormGroup;
 
-  wasteTypes = Object.values(WasteType);
-
-  constructor(private store: Store) {}
-
-  onSubmit(): void {
-    const newCollection: Collection = {
-      ...this.collection,
-      status: Status.PENDING, 
-    };
-
-    this.store.dispatch(addCollection({ collection: newCollection }));
-    alert('Collection request created successfully!');
-    this.resetForm();
+  constructor(private fb: FormBuilder, private store: Store) {
+    this.requestForm = this.fb.group({
+      wasteType: ['', Validators.required],
+      estimatedWeight: ['', [Validators.required, Validators.min(1000)]],
+      Address: ['', Validators.required],
+      Date: ['', Validators.required],
+      TimeSlot: ['', Validators.required],
+      additionalNotes: ['']
+    });
   }
 
-  resetForm(): void {
-    this.collection = {
-      wasteType: WasteType.PLASTIC,
-      estimatedWeight: 0,
-      Address: '',
-      Date: '',
-      TimeSlot: '',
-      additionalNotes: '',
-      photos: [],
-    };
+  onSubmit() {
+    if (this.requestForm.valid) {
+      const request: Collection = {
+        ...this.requestForm.value,
+        id: this.generateId(),
+        status: Status.PENDING
+      };
+      console.log((localStorage));
+      // console.log('Dispatching addRequest action with request:', request); 
+      this.store.dispatch(addCollection({  }));
+      // this.requestForm.reset(); 
+    } else {
+      console.error('Form is invalid'); 
+    }
+
+  }
+  
+
+  private generateId(): string {
+    return Math.random().toString(36).substr(2, 9);
   }
 }
