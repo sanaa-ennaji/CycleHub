@@ -1,17 +1,17 @@
 import { createAction, props } from '@ngrx/store';
 import { Collection } from '../../models/Collection.model';
 
-export const addRequest = createAction(
-    '[Collection] Add Request',
-    props<{ request: Collection }>()
+export const addCollection = createAction(
+    '[Collection] Add Collection',
+    props<{ collection: Collection }>()
   );
-
-export const updateRequest = createAction(
-  '[Collection] Update Request',
-  props<{ id: string; changes: Partial<Collection> }>()
-);
-
-export const deleteRequest = createAction(
-  '[Collection] Delete Request',
-  props<{ id: string }>()
-);
+  
+  export const updateCollection = createAction(
+    '[Collection] Update Collection',
+    props<{ id: string; changes: Partial<Collection> }>()
+  );
+  
+  export const deleteCollection = createAction(
+    '[Collection] Delete Collection',
+    props<{ id: string }>()
+  );
