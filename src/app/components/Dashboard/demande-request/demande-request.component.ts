@@ -15,6 +15,7 @@ import { Status } from '../../../models/Status.enum';
 })
 export class DemandeRequestComponent {
   requestForm: FormGroup;
+  isOpen: boolean = false;
 
   constructor(private fb: FormBuilder, private store: Store) {
     this.requestForm = this.fb.group({
@@ -27,6 +28,15 @@ export class DemandeRequestComponent {
     });
   }
 
+  openModal() {
+    this.isOpen = true;
+  }
+
+  closeModal() {
+    this.isOpen = false;
+    this.resetForm();
+  }
+
   onSubmit() {
     if (this.requestForm.valid) {
       const request: Collection = {
@@ -34,16 +44,19 @@ export class DemandeRequestComponent {
         id: this.generateId(),
         status: Status.PENDING
       };
-      console.log('Dispatching addRequest action with request:', request); // Debugging
+      console.log('Dispatching addRequest action with request:', request);
       this.store.dispatch(addCollection({ collection: request })); 
-      this.requestForm.reset(); 
+      this.closeModal();
     } else {
       console.error('Form is invalid'); 
     }
   }
-  
 
   private generateId(): string {
     return Math.random().toString(36).substr(2, 9);
+  }
+
+  private resetForm() {
+    this.requestForm.reset();
   }
 }

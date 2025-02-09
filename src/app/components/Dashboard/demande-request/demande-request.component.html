@@ -1,94 +1,81 @@
-<div class="sm:mx-auto sm:w-full sm:max-w-sm mt-10">
-    <h2 class="mt-10 text-center text-2xl/9 font-bold tracking-tight">
-      Create demande request
-    </h2>
+<div (click)="openModal()" class="pl-5 pt-5">
+    <svg xmlns="http://www.w3.org/2000/svg" class="fill-green-700 w-9 text-4xl cursor-pointer" viewBox="0 0 448 512">
+      <path d="M64 32C28.7 32 0 60.7 0 96L0 416c0 35.3 28.7 64 64 64l320 0c35.3 0 64-28.7 64-64l0-320c0-35.3-28.7-64-64-64L64 32zM200 344l0-64-64 0c-13.3 0-24-10.7-24-24s10.7-24 24-24l64 0 0-64c0-13.3 10.7-24 24-24s24 10.7 24 24l0 64 64 0c13.3 0 24 10.7 24 24s-10.7 24-24 24l-64 0 0 64c0 13.3-10.7 24-24 24s-24-10.7-24-24z"/>
+    </svg>
   </div>
-  <form
-    [formGroup]="requestForm"
-    (ngSubmit)="onSubmit()"
-    class="max-w-md mt-4 mx-auto h-auto">
-    <div class="mt-10 grid grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6">
-      <div class="sm:col-span-3">
-        <label for="wasteType" class="block text-sm/6 font-medium text-gray-900">Type de déchet:</label>
-        <select
-          id="wasteType"
-          formControlName="wasteType"
-          class="col-start-1 row-start-1 w-full appearance-none rounded-md bg-white py-1.5 pr-8 pl-3 text-base text-gray-900 outline-1 -outline-offset-1 outline-gray-300 focus:outline-2 focus:-outline-offset-2 focus:outline-green-600 sm:text-sm/6">
-          <option value="PLASTIC">Plastic</option>
-          <option value="GLASS">Glass</option>
-          <option value="PAPER">Paper</option>
-          <option value="METAL">Metal</option>
-        </select>
-        <small *ngIf="requestForm.get('wasteType')?.invalid && requestForm.get('wasteType')?.touched" class="text-red-500">
-          Type de déchet est requis.
-        </small>
-      </div>
   
-      <div class="sm:col-span-3">
-        <label for="estimatedWeight" class="block text-sm/6 font-medium text-gray-900">Poids estimé (en grammes):</label>
-        <input
-          id="estimatedWeight"
-          type="number"
-          formControlName="estimatedWeight"
-          class="block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline-2 focus:-outline-offset-2 focus:outline-green-600 sm:text-sm/6" />
-        <small *ngIf="requestForm.get('estimatedWeight')?.hasError('min')" class="text-red-500">
-          Le poids minimum est de 1000g.
-        </small>
-      </div>
-    </div>
+  <div class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50" *ngIf="isOpen">
+    <div class="w-96 bg-white rounded-lg shadow-lg p-6">
+      <h2 class="mt-10 text-center text-2xl/9 font-bold tracking-tight">
+        Create demande request
+      </h2>
   
-    <!-- Address and Date -->
-    <div class="mt-5 grid grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6">
-      <div class="sm:col-span-3">
-        <label for="Address" class="block text-sm/6 font-medium text-gray-900">Adresse de collecte:</label>
-        <input
-          id="Address"
-          type="text"
-          formControlName="Address"
-          class="block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline-2 focus:-outline-offset-2 focus:outline-green-600 sm:text-sm/6" />
-        <small *ngIf="requestForm.get('Address')?.invalid && requestForm.get('Address')?.touched" class="text-red-500">
-          Adresse est requis.
-        </small>
-      </div>
-      <div class="sm:col-span-3">
-        <label for="Date" class="block text-sm/6 font-medium text-gray-900">Date de collecte:</label>
-        <input
-          id="Date"
-          type="date"
-          formControlName="Date"
-          class="block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline-2 focus:-outline-offset-2 focus:outline-green-600 sm:text-sm/6" />
-        <small *ngIf="requestForm.get('Date')?.invalid && requestForm.get('Date')?.touched" class="text-red-500">
-          Date est requis.
-        </small>
-      </div>
-    </div>
+      <form [formGroup]="requestForm" (ngSubmit)="onSubmit()" class="max-w-md mt-4 mx-auto h-auto">
+        <div class="mt-10 grid grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6">
+          <div class="sm:col-span-3">
+            <label for="wasteType" class="block text-sm/6 font-medium text-gray-900">Type de déchet:</label>
+            <select id="wasteType" formControlName="wasteType" class="col-start-1 row-start-1 w-full appearance-none rounded-md bg-white py-1.5 pr-8 pl-3 text-base text-gray-900 outline-1 -outline-offset-1 outline-gray-300 focus:outline-2 focus:-outline-offset-2 focus:outline-green-600 sm:text-sm/6">
+              <option value="PLASTIC">Plastic</option>
+              <option value="GLASS">Glass</option>
+              <option value="PAPER">Paper</option>
+              <option value="METAL">Metal</option>
+            </select>
+            <small *ngIf="requestForm.get('wasteType')?.invalid && requestForm.get('wasteType')?.touched" class="text-red-500">
+              Type de déchet est requis.
+            </small>
+          </div>
   
-    <div class="mt-5 block text-sm/6 font-medium text-gray-900">
-      <label for="TimeSlot" class="block text-sm/6 font-medium text-gray-900">Créneau horaire:</label>
-      <select
-        id="TimeSlot"
-        formControlName="TimeSlot"
-        class="col-start-1 row-start-1 w-full appearance-none rounded-md bg-white py-1.5 pr-8 pl-3 text-base text-gray-900 outline-1 -outline-offset-1 outline-gray-300 focus:outline-2 focus:-outline-offset-2 focus:outline-green-600 sm:text-sm/6">
-        <option value="09:00-12:00">09:00 - 12:00</option>
-        <option value="12:00-15:00">12:00 - 15:00</option>
-        <option value="15:00-18:00">15:00 - 18:00</option>
-      </select>
-      <small *ngIf="requestForm.get('TimeSlot')?.invalid && requestForm.get('TimeSlot')?.touched" class="text-red-500">
-        Créneau horaire est requis.
-      </small>
-    </div>
-    <div class="mt-5">
-      <label for="additionalNotes" class="block text-sm/6 font-medium text-gray-900">Notes supplémentaires:</label>
-      <textarea
-        id="additionalNotes"
-        formControlName="additionalNotes"
-        class="col-start-1 row-start-1 w-full appearance-none rounded-md bg-white py-1.5 pr-8 pl-3 text-base text-gray-900 outline-1 -outline-offset-1 outline-gray-300 focus:outline-2 focus:-outline-offset-2 focus:outline-green-600 sm:text-sm/6"></textarea>
-    </div>
+          <div class="sm:col-span-3">
+            <label for="estimatedWeight" class="block text-sm/6 font-medium text-gray-900">Poids estimé (en grammes):</label>
+            <input id="estimatedWeight" type="number" formControlName="estimatedWeight" class="block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline-2 focus:-outline-offset-2 focus:outline-green-600 sm:text-sm/6" />
+            <small *ngIf="requestForm.get('estimatedWeight')?.hasError('min')" class="text-red-500">
+              Le poids minimum est de 1000g.
+            </small>
+          </div>
+        </div>
   
-    <button
-      type="submit"
-      [disabled]="requestForm.invalid"
-      class="mt-5 text-white bg-green-700 hover:bg-green-800 focus:ring-4 focus:outline-none focus:ring-green-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800">
-      Soumettre
-    </button>
-  </form>
+        <div class="mt-5 grid grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6">
+          <div class="sm:col-span-3">
+            <label for="Address" class="block text-sm/6 font-medium text-gray-900">Adresse de collecte:</label>
+            <input id="Address" type="text" formControlName="Address" class="block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline-2 focus:-outline-offset-2 focus:outline-green-600 sm:text-sm/6" />
+            <small *ngIf="requestForm.get('Address')?.invalid && requestForm.get('Address')?.touched" class="text-red-500">
+              Adresse est requis.
+            </small>
+          </div>
+          <div class="sm:col-span-3">
+            <label for="Date" class="block text-sm/6 font-medium text-gray-900">Date de collecte:</label>
+            <input id="Date" type="date" formControlName="Date" class="block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline-2 focus:-outline-offset-2 focus:outline-green-600 sm:text-sm/6" />
+            <small *ngIf="requestForm.get('Date')?.invalid && requestForm.get('Date')?.touched" class="text-red-500">
+              Date est requis.
+            </small>
+          </div>
+        </div>
+  
+        <div class="mt-5 block text-sm/6 font-medium text-gray-900">
+          <label for="TimeSlot" class="block text-sm/6 font-medium text-gray-900">Créneau horaire:</label>
+          <select id="TimeSlot" formControlName="TimeSlot" class="col-start-1 row-start-1 w-full appearance-none rounded-md bg-white py-1.5 pr-8 pl-3 text-base text-gray-900 outline-1 -outline-offset-1 outline-gray-300 focus:outline-2 focus:-outline-offset-2 focus:outline-green-600 sm:text-sm/6">
+            <option value="09:00-12:00">09:00 - 12:00</option>
+            <option value="12:00-15:00">12:00 - 15:00</option>
+            <option value="15:00-18:00">15:00 - 18:00</option>
+          </select>
+          <small *ngIf="requestForm.get('TimeSlot')?.invalid && requestForm.get('TimeSlot')?.touched" class="text-red-500">
+            Créneau horaire est requis.
+          </small>
+        </div>
+  
+        <div class="mt-5">
+          <label for="additionalNotes" class="block text-sm/6 font-medium text-gray-900">Notes supplémentaires:</label>
+          <textarea id="additionalNotes" formControlName="additionalNotes" class="col-start-1 row-start-1 w-full appearance-none rounded-md bg-white py-1.5 pr-8 pl-3 text-base text-gray-900 outline-1 -outline-offset-1 outline-gray-300 focus:outline-2 focus:-outline-offset-2 focus:outline-green-600 sm:text-sm/6"></textarea>
+        </div>
+  
+        <div class="mt-5 flex justify-between">
+          <button type="submit" [disabled]="requestForm.invalid" class="text-white bg-green-700 hover:bg-green-800 focus:ring-4 focus:outline-none focus:ring-green-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800">
+            Soumettre
+          </button>
+          <button type="button" (click)="closeModal()" class="text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:outline-none focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-800">
+            Cancel
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
