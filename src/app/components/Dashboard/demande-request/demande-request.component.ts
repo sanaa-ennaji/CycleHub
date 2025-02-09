@@ -5,7 +5,6 @@ import { addRequest } from '../../../store/collection/collection.actions';
 import { Collection } from '../../../models/Collection.model';
 import { CommonModule } from '@angular/common';
 import { Status } from '../../../models/Status.enum';
-import { v4 as uuidv4 } from 'uuid';
 @Component({
   selector: 'app-demande-request',
   standalone: true,
@@ -32,8 +31,7 @@ export class DemandeRequestComponent {
     if (this.requestForm.valid) {
       const request: Collection = {
         ...this.requestForm.value,
-        id: this.uuidv4(),
-      
+        id: this.generateId(),
         status: Status.PENDING
       };
       console.log(localStorage);
