@@ -4,6 +4,7 @@ import { Store } from '@ngrx/store';
 import { addRequest } from '../../../store/collection/collection.actions';
 import { Collection } from '../../../models/Collection.model';
 import { CommonModule } from '@angular/common';
+import { Status } from '../../../models/Status.enum';
 @Component({
   selector: 'app-demande-request',
   standalone: true,
@@ -31,15 +32,18 @@ export class DemandeRequestComponent {
       const request: Collection = {
         ...this.requestForm.value,
         id: this.generateId(),
-        status: 'PENDING'
+        status: Status.PENDING
       };
-      console.log('Dispatching addRequest action with request:', request); // Debug
+      console.log(localStorage);
+      // console.log('Dispatching addRequest action with request:', request); 
       this.store.dispatch(addRequest({ request }));
       // this.requestForm.reset(); 
     } else {
       console.error('Form is invalid'); 
     }
+
   }
+  
 
   private generateId(): string {
     return Math.random().toString(36).substr(2, 9);

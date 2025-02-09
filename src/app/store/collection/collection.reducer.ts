@@ -4,17 +4,14 @@ import { CollectionState } from './collection.state';
 
 
 const getInitialState = (): CollectionState => {
+  try {
     if (typeof window !== 'undefined') {
-        const stored = localStorage.getItem('collectionState');
-        if (stored) {
-          try {
-            const parsed = JSON.parse(stored);
-            return parsed.requests ? parsed : { requests: parsed };
-          } catch {
-            return { requests: [] };
-          }
-        }
-      }
+      const storedState = localStorage.getItem('collectionState');
+      return storedState ? JSON.parse(storedState) : { requests: [] };
+    }
+  } catch (error) {
+    console.error('Error loading state from localStorage:', error);
+  }
   return { requests: [] };
 };
 const initialState: CollectionState = getInitialState();
@@ -25,7 +22,7 @@ const saveStateToLocalStorage = (state: CollectionState) => {
       localStorage.setItem('collectionState', JSON.stringify(state));
       console.log('State saved to localStorage successfully.'); 
     } else {
-        console.log('Window is undefined. Skipping localStorage save.'); // Debug
+        console.log('Window is undefined. Skipping localStorage save.');
       }
   } catch (error) {
     console.error('Error saving state to localStorage:', error);
@@ -33,14 +30,26 @@ const saveStateToLocalStorage = (state: CollectionState) => {
 };
 export const wasteCollectionReducer = createReducer(
   initialState,
+//   on(addRequest, (state, { request }) => {
+//     console.log('Current state before adding request:', state);
+//     const updatedRequests = [...state.requests, request];
+//     const newState = { ...state, requests: updatedRequests };
+//     console.log('New state after adding request:', newState);
+//     saveStateToLocalStorage(newState);
+//     return newState;
+//   }),
+
   on(addRequest, (state, { request }) => {
-    console.log('Current state before adding request:', state);
     const updatedRequests = [...state.requests, request];
-    const newState = { ...state, requests: updatedRequests };
-    console.log('New state after adding request:', newState);
-    saveStateToLocalStorage(newState);
-    return newState;
+  
+    if (typeof window !== 'undefined') {
+      localStorage.setItem('collectionState', JSON.stringify({ requests: updatedRequests }));
+      console.log('Updated Local Storage:', JSON.parse(localStorage.getItem('collectionState') || '[]')); // Debugging line
+    }
+  
+    return { ...state, requests: updatedRequests };
   }),
+  
   on(updateRequest, (state, { id, changes }) => {
     const updatedRequests = state.requests.map((request) =>
       request.id === id ? { ...request, ...changes } : request
