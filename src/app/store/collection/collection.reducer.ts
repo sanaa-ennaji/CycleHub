@@ -9,6 +9,7 @@ const getInitialState = (): CollectionState => {
       const storedState = localStorage.getItem('collectionState');
       return storedState ? JSON.parse(storedState) : { requests: [] };
     }
+    return [];
   } catch (error) {
     console.error('Error loading state from localStorage:', error);
   }
