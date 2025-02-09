@@ -7,13 +7,14 @@ const getInitialState = (): CollectionState => {
   try {
     if (typeof window !== 'undefined') {
       const storedState = localStorage.getItem('collectionState');
-      return storedState ? JSON.parse(storedState) : { requests: [] };
+      return storedState ? JSON.parse(storedState) : [];
     }
     return [];
   } catch (error) {
     console.error('Error loading state from localStorage:', error);
+    return [];
   }
-  return { requests: [] };
+
 };
 const initialState: CollectionState = getInitialState();
 const saveStateToLocalStorage = (state: CollectionState) => {
