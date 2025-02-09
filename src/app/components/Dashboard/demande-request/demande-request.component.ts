@@ -4,8 +4,6 @@ import { Store } from '@ngrx/store';
 import { Collection } from '../../../models/Collection.model';
 import { CommonModule } from '@angular/common';
 import { Status } from '../../../models/Status.enum';
-import { WasteType } from '../../../models/WasteType.enum';
-import { v4 as uuidv4 } from 'uuid';
 @Component({
   selector: 'app-demande-request',
   standalone: true,
@@ -15,7 +13,7 @@ import { v4 as uuidv4 } from 'uuid';
 })
 
 export class DemandeRequestComponent {
-
+  
   collection: Omit<Collection, 'id' | 'status'> = {
     wasteType: WasteType.PLASTIC,
     estimatedWeight: 0,
