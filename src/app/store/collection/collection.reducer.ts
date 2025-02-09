@@ -16,13 +16,13 @@ const getStoredRequests = (): CollectionState[] => {
   }
 };
 
-// Initial state
+
 const initialState: CollectionState = {
   requests: getStoredRequests()
 };
 
 // Helper function to save to localStorage
-const saveToLocalStorage = (requests: CollectionState[]) => {
+const saveToLocalStorage = (requests:CollectionState[]) => {
   try {
     if (typeof window !== 'undefined') {
       localStorage.setItem('collectionRequests', JSON.stringify(requests));
