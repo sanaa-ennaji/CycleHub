@@ -41,6 +41,7 @@ export class DemandeRequestComponent {
       console.error('Form is invalid'); 
     }
   }
+  
 
   private generateId(): string {
     return Math.random().toString(36).substr(2, 9);
