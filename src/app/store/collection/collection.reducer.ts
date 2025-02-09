@@ -3,21 +3,20 @@ import { addRequest, updateRequest, deleteRequest } from './collection.actions';
 import { CollectionState } from './collection.state';
 
 
-const loadInitialState = (): CollectionState => {
+const getInitialState = (): CollectionState => {
     if (typeof window !== 'undefined') {
-      const stored = localStorage.getItem('collectionState');
-      if (stored) {
-        try {
-          const parsed = JSON.parse(stored);
-          return parsed.requests ? parsed : { requests: parsed };
-        } catch {
-          return { requests: [] };
+        const stored = localStorage.getItem('collectionState');
+        if (stored) {
+          try {
+            const parsed = JSON.parse(stored);
+            return parsed.requests ? parsed : { requests: parsed };
+          } catch {
+            return { requests: [] };
+          }
         }
       }
-    }
-    return { requests: [] };
-  };
-  
+  return { requests: [] };
+};
 const initialState: CollectionState = getInitialState();
 const saveStateToLocalStorage = (state: CollectionState) => {
   try {
