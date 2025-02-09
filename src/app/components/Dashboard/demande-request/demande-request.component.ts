@@ -36,15 +36,13 @@ export class DemandeRequestComponent {
       };
       console.log((localStorage));
       // console.log('Dispatching addRequest action with request:', request); 
-      this.store.dispatch(addCollection({  }));
+      this.store.dispatch(addCollection({ collection }));
       // this.requestForm.reset(); 
     } else {
       console.error('Form is invalid'); 
     }
 
   }
-  
-
   private generateId(): string {
     return Math.random().toString(36).substr(2, 9);
   }
