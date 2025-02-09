@@ -30,25 +30,15 @@ const saveStateToLocalStorage = (state: CollectionState) => {
 };
 export const wasteCollectionReducer = createReducer(
   initialState,
-//   on(addRequest, (state, { request }) => {
-//     console.log('Current state before adding request:', state);
-//     const updatedRequests = [...state.requests, request];
-//     const newState = { ...state, requests: updatedRequests };
-//     console.log('New state after adding request:', newState);
-//     saveStateToLocalStorage(newState);
-//     return newState;
-//   }),
-
   on(addRequest, (state, { request }) => {
+    console.log('Current state before adding request:', state);
     const updatedRequests = [...state.requests, request];
-  
-    if (typeof window !== 'undefined') {
-      localStorage.setItem('collectionState', JSON.stringify({ requests: updatedRequests }));
-      console.log('Updated Local Storage:', JSON.parse(localStorage.getItem('collectionState') || '[]')); // Debugging line
-    }
-  
-    return { ...state, requests: updatedRequests };
+    const newState = { ...state, requests: updatedRequests };
+    console.log('New state after adding request:', newState);
+    saveStateToLocalStorage(newState);
+    return newState;
   }),
+
   
   on(updateRequest, (state, { id, changes }) => {
     const updatedRequests = state.requests.map((request) =>
