@@ -31,8 +31,7 @@ export class DemandeRequestComponent {
   onSubmit(): void {
     const newCollection: Collection = {
       ...this.collection,
-      id: uuidv4(), // Generate a unique ID
-      status: Status.PENDING, // Default status
+      status: Status.PENDING, 
     };
 
     this.store.dispatch(addCollection({ collection: newCollection }));
