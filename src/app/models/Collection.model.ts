@@ -2,9 +2,9 @@ import {Status } from './Status.enum' ;
 import { WasteType } from './WasteType.enum';
 export interface Collection {
     id: string;
-    userId?: string;  
+    // userId?: string;  
     wasteType: WasteType;
-    photos?: string[];
+    // photos?: string[];
     estimatedWeight: number;
     Address: string;
     Date: string;
@@ -12,4 +12,3 @@ export interface Collection {
     additionalNotes?: string;
     status: Status;  
   }
-  
