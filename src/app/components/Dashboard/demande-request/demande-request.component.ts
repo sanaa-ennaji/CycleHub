@@ -5,6 +5,7 @@ import { Collection } from '../../../models/Collection.model';
 import { CommonModule } from '@angular/common';
 import { Status } from '../../../models/Status.enum';
 import { WasteType } from '../../../models/WasteType.enum';
+import { v4 as uuidv4 } from 'uuid';
 @Component({
   selector: 'app-demande-request',
   standalone: true,
@@ -32,7 +33,7 @@ export class DemandeRequestComponent {
   onSubmit(): void {
     const newCollection: Collection = {
       ...this.collection,
-      id: this.generateId(),
+      id: uuidv4(), // Generate a unique ID
       status: Status.PENDING, // Default status
     };
 
