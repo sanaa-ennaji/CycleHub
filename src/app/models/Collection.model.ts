@@ -12,3 +12,4 @@ export interface Collection {
     additionalNotes?: string;
     status: Status;  
   }
+  
