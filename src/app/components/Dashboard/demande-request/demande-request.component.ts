@@ -32,17 +32,20 @@ export class DemandeRequestComponent {
       const request: Collection = {
         ...this.requestForm.value,
         id: this.generateId(),
-        status: Status.PENDING
+        status: 'PENDING'
       };
-      console.log(localStorage);
-      // console.log('Dispatching addRequest action with request:', request); 
+  
+      console.log("Dispatching request: ", request);
+  
       this.store.dispatch(addRequest({ request }));
-      // this.requestForm.reset(); 
+  
+      const storedRequests = JSON.parse(localStorage.getItem('collectionState') || '[]');
+      console.log("Local Storage After Dispatch: ", storedRequests);
     } else {
-      console.error('Form is invalid'); 
+      console.error('Form is invalid');
     }
-
   }
+  
   
 
   private generateId(): string {
