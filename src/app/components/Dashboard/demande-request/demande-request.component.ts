@@ -1,18 +1,18 @@
 import { Component } from '@angular/core';
-import { FormBuilder, FormGroup, Validators , ReactiveFormsModule} from '@angular/forms';
+import { FormBuilder, FormGroup, Validators, ReactiveFormsModule } from '@angular/forms';
 import { Store } from '@ngrx/store';
 import { addCollection } from '../../../store/collection/collection.actions';
 import { Collection } from '../../../models/Collection.model';
 import { CommonModule } from '@angular/common';
 import { Status } from '../../../models/Status.enum';
+
 @Component({
   selector: 'app-demande-request',
   standalone: true,
-  imports : [ReactiveFormsModule, CommonModule],
+  imports: [ReactiveFormsModule, CommonModule],
   templateUrl: './demande-request.component.html',
   styleUrls: ['./demande-request.component.css']
 })
-
 export class DemandeRequestComponent {
   requestForm: FormGroup;
 
@@ -34,15 +34,14 @@ export class DemandeRequestComponent {
         id: this.generateId(),
         status: Status.PENDING
       };
-      console.log((localStorage));
-      // console.log('Dispatching addRequest action with request:', request); 
-      this.store.dispatch(addCollection({ collection }));
-      // this.requestForm.reset(); 
+      console.log('Dispatching addRequest action with request:', request); // Debugging
+      this.store.dispatch(addCollection({ collection: request })); 
+      this.requestForm.reset(); 
     } else {
       console.error('Form is invalid'); 
     }
-
   }
+
   private generateId(): string {
     return Math.random().toString(36).substr(2, 9);
   }
