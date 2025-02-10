@@ -3,6 +3,7 @@ import { SidebareComponent } from "../../Shared/sidebare/sidebare.component";
 import { CommonModule } from '@angular/common';
 import { Collection } from '../../../models/Collection.model';
 import { Status } from '../../../models/Status.enum';
+
 @Component({
   selector: 'app-request-list',
   standalone: true,
@@ -31,6 +32,10 @@ export class RequestListComponent {
     if (storedUser) {
       this.currentUser = JSON.parse(storedUser);
     }
+  }
+
+  get pendingCollections(): Collection[] {
+    return this.collections.filter(collection => collection.status === Status.PENDING);
   }
 
   getStatusLabel(status: number): string {
