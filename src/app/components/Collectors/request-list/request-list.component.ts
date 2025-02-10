@@ -27,4 +27,15 @@ export class RequestListComponent {
   getStatusLabel(status: number): string {
     return Status[status]; 
   }
+
+  reserveCollection(collection: Collection) {
+    if (collection.status === Status.PENDING) {
+      collection.status = Status.RESERVED;
+      this.updateLocalStorage();
+    }
+  }
+
+  private updateLocalStorage() {
+    localStorage.setItem('collections', JSON.stringify(this.collections));
+  }
 }
