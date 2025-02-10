@@ -8,13 +8,10 @@ const initialState: AuthState = {
   currentUser: typeof window !== 'undefined' ? JSON.parse(localStorage.getItem('currentUser') || 'null') : null,
 };
 
-
-if (!initialState.users.length) {
   initialState.users = generateFakeCollectors();
   if (typeof window !== 'undefined') {
     localStorage.setItem('users', JSON.stringify(initialState.users)); 
   }
-}
   
   export const authReducer = createReducer(
     initialState,
