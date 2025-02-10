@@ -47,7 +47,7 @@ export class DemandeRequestComponent {
 
       this.store.dispatch(addCollection({ collection: request }));
       this.saveToLocalStorage(request);
-      // this.closeModal();
+      this.closeModal();
     } else {
       console.error('Form is invalid'); 
     }
