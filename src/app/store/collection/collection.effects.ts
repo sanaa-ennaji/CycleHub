@@ -14,6 +14,7 @@ export class CollectionEffects {
       this.actions$.pipe(
         ofType(addCollection, updateCollection, deleteCollection),
         tap(() => {
+            console.log('addCollection action received:');
           this.store
             .select(selectCollections)  
             .subscribe((requests) => {
