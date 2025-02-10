@@ -1,7 +1,6 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators, ReactiveFormsModule } from '@angular/forms';
 import { Store } from '@ngrx/store';
-import { addCollection } from '../../../store/collection/collection.actions';
 import { Collection } from '../../../models/Collection.model';
 import { CommonModule } from '@angular/common';
 import { Status } from '../../../models/Status.enum';
@@ -44,8 +43,6 @@ export class DemandeRequestComponent {
         id: this.generateId(),
         status: Status.PENDING
       };
-
-      this.store.dispatch(addCollection({ collection: request }));
       this.saveToLocalStorage(request);
       this.closeModal();
     } else {

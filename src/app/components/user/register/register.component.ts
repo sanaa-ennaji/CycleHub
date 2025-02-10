@@ -40,7 +40,8 @@ export class RegisterComponent {
   onRegister() {
     if (this.registerForm.valid) {
       const user: User = {
-        id: this.generateId(),  
+        id: this.generateId(), 
+        roleId: 1 ,  
         ...this.registerForm.value,
       };
 

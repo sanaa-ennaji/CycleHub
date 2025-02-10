@@ -1,11 +1,12 @@
+<div class="bg-green-50">
 <app-navbar></app-navbar>
 
-<div class="sm:mx-auto sm:w-full sm:max-w-sm mt-10">
+<div class="sm:mx-auto sm:w-full sm:max-w-sm mt-8">
   <img class="mx-auto h-20 w-20" src="/assets/logo.png" alt="logo">
   <h2 class="mt-10 text-center text-2xl/9 font-bold tracking-tight ">Sign up to your account</h2>
 </div>
 
-<form [formGroup]="registerForm" (ngSubmit)="onRegister()" class="max-w-md mt-4 mx-auto h-auto">
+<form [formGroup]="registerForm" (ngSubmit)="onRegister()" class="max-w-md mt-4 mx-auto h-auto ">
   <div>
   <div class="relative z-0 w-full mb-5 group">
       <input formControlName="email" type="email" id="email"  class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-green-500 focus:outline-none focus:ring-0 focus:border-green-600 peer" placeholder=" " required />
@@ -44,5 +45,6 @@
 
 <button (click)="navigateToLogin()"> <p class="ms-2 text-sm font-medium text-green-600 hover:underline dark:text-green-500">You alreaday have an account ?</p></button>
 </div>
-  <button type="submit" [disabled]="registerForm.invalid" class="mt-5 text-white bg-green-700 hover:bg-green-800 focus:ring-4 focus:outline-none focus:ring-green-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800">Submit</button>
+  <button type="submit" [disabled]="registerForm.invalid" class="my-5  text-white bg-green-700 hover:bg-green-800 focus:ring-4 focus:outline-none focus:ring-green-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800">Submit</button>
 </form>
+</div>

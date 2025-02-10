@@ -8,5 +8,5 @@ export interface User {
     phoneNumber:string;
     dateOfBirth: Date;
     profilePicture?: string;
-    role?: string;  
+    roleId: number;   
 }

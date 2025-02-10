@@ -1,13 +1,20 @@
 import { createReducer, on } from '@ngrx/store';
 import { registerUser , loginUser, logoutUser, loginFailure, loginSuccess, updateUser} from './auth.actions';
 import { AuthState } from './auth.state';
+import { generateFakeCollectors } from './CollectorData'; 
+
+const initialState: AuthState = {
+  users: typeof window !== 'undefined' ? JSON.parse(localStorage.getItem('users') || '[]') : [],
+  currentUser: typeof window !== 'undefined' ? JSON.parse(localStorage.getItem('currentUser') || 'null') : null,
+};
 
 
-
-  const initialState: AuthState = {
-    users: typeof window !== 'undefined' ? JSON.parse(localStorage.getItem('users') || '[]') : [],
-    currentUser: typeof window !== 'undefined' ? JSON.parse(localStorage.getItem('currentUser') || 'null') : null,
-  };
+if (!initialState.users.length) {
+  initialState.users = generateFakeCollectors();
+  if (typeof window !== 'undefined') {
+    localStorage.setItem('users', JSON.stringify(initialState.users)); 
+  }
+}
   
   export const authReducer = createReducer(
     initialState,
