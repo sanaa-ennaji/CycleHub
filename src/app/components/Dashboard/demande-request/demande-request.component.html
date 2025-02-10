@@ -12,7 +12,7 @@
       <form [formGroup]="requestForm" (ngSubmit)="onSubmit()" class="max-w-md mt-4 mx-auto h-auto">
         <div class="mt-10 grid grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6">
           <div class="sm:col-span-3">
-            <label for="wasteType" class="block text-sm/6 font-medium text-gray-900">Type de déchet:</label>
+            <label for="wasteType" class="block text-sm/6 font-medium text-gray-900">waste Type:</label>
             <select id="wasteType" formControlName="wasteType" class="col-start-1 row-start-1 w-full appearance-none rounded-md bg-white py-1.5 pr-8 pl-3 text-base text-gray-900 outline-1 -outline-offset-1 outline-gray-300 focus:outline-2 focus:-outline-offset-2 focus:outline-green-600 sm:text-sm/6">
               <option value="PLASTIC">Plastic</option>
               <option value="GLASS">Glass</option>
@@ -25,7 +25,7 @@
           </div>
   
           <div class="sm:col-span-3">
-            <label for="estimatedWeight" class="block text-sm/6 font-medium text-gray-900">Poids estimé (en grammes):</label>
+            <label for="estimatedWeight" class="block text-sm/6 font-medium text-gray-900">estimated Weight (grammes):</label>
             <input id="estimatedWeight" type="number" formControlName="estimatedWeight" class="block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline-2 focus:-outline-offset-2 focus:outline-green-600 sm:text-sm/6" />
             <small *ngIf="requestForm.get('estimatedWeight')?.hasError('min')" class="text-red-500">
              the Weight id min 1000g.
@@ -35,14 +35,14 @@
   
         <div class="mt-5 grid grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6">
           <div class="sm:col-span-3">
-            <label for="Address" class="block text-sm/6 font-medium text-gray-900">Adresse de collecte:</label>
+            <label for="Address" class="block text-sm/6 font-medium text-gray-900">Address of the collection:</label>
             <input id="Address" type="text" formControlName="Address" class="block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline-2 focus:-outline-offset-2 focus:outline-green-600 sm:text-sm/6" />
             <small *ngIf="requestForm.get('Address')?.invalid && requestForm.get('Address')?.touched" class="text-red-500">
              the address is required.
             </small>
           </div>
           <div class="sm:col-span-3">
-            <label for="Date" class="block text-sm/6 font-medium text-gray-900">Date de collecte:</label>
+            <label for="Date" class="block text-sm/6 font-medium text-gray-900">Date of collecte:</label>
             <input id="Date" type="date" formControlName="Date" class="block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline-2 focus:-outline-offset-2 focus:outline-green-600 sm:text-sm/6" />
             <small *ngIf="requestForm.get('Date')?.invalid && requestForm.get('Date')?.touched" class="text-red-500">
               Date is required.
@@ -51,7 +51,7 @@
         </div>
   
         <div class="mt-5 block text-sm/6 font-medium text-gray-900">
-          <label for="TimeSlot" class="block text-sm/6 font-medium text-gray-900">Créneau horaire:</label>
+          <label for="TimeSlot" class="block text-sm/6 font-medium text-gray-900">Time Slot:</label>
           <select id="TimeSlot" formControlName="TimeSlot" class="col-start-1 row-start-1 w-full appearance-none rounded-md bg-white py-1.5 pr-8 pl-3 text-base text-gray-900 outline-1 -outline-offset-1 outline-gray-300 focus:outline-2 focus:-outline-offset-2 focus:outline-green-600 sm:text-sm/6">
             <option value="09:00-12:00">09:00 - 12:00</option>
             <option value="12:00-15:00">12:00 - 15:00</option>
