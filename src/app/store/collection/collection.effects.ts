@@ -17,7 +17,7 @@ export class CollectionEffects {
         tap((action) => {
           console.log('addCollection action received:', action);  
           this.store
-            .select(selectCollections)  
+            .select(selectCollections)
             .subscribe((requests) => {
               console.log('Saving collections to localStorage:', requests); 
               localStorage.setItem('collections', JSON.stringify(requests));
