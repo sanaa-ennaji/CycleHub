@@ -39,10 +39,17 @@ export class RegisterComponent {
 
   onRegister() {
     if (this.registerForm.valid) {
-      const user: User = this.registerForm.value;
+      const user: User = {
+        id: this.generateId(),  
+        ...this.registerForm.value,
+      };
+
       this.store.dispatch(registerUser({ user }));
       this.router.navigate(['/']);
     }
+  }
+  private generateId(): string {
+    return Math.random().toString(36).substr(2, 9);
   }
   navigateToLogin() {
     this.router.navigate(['/login']);
