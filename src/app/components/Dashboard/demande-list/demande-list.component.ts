@@ -29,4 +29,15 @@ export class DemandeListComponent implements OnInit {
   getStatusLabel(status: number): string {
     return Status[status]; 
   }
+
+  deleteCollection(collectionId: string) {
+    const collectionIndex = this.collections.findIndex((col) => col.id === collectionId);
+    if (collectionIndex !== -1 && this.collections[collectionIndex].status === Status.PENDING) {
+      this.collections.splice(collectionIndex, 1); 
+      localStorage.setItem('collections', JSON.stringify(this.collections));
+      console.log(`Collection with ID: ${collectionId} deleted`);
+    } else {
+      console.error('Collection cannot be deleted because its status is not PENDING');
+    }
+  }
 }
