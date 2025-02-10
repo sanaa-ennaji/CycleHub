@@ -3,6 +3,11 @@
     <app-sidebare class="w-1/5 min-w-[250px]"></app-sidebare>
 
     <div class="overflow-hidden w-[80vw] mt-20 mx-auto" *ngIf="collections.length > 0; else noData">
+        <!-- User Points Display -->
+<div class="text-right p-5">
+    <p class="font-bold text-lg">💰 Mes Points: <span class="text-green-600">{{ userPoints }}</span></p>
+</div>
+
         <table class="min-w-full rounded-xl">
             <thead>
                 <tr class="bg-green-100">
@@ -55,7 +60,7 @@
 
         <div class="flex justify-end mt-4">
             <button (click)="closeUpdateModal()" class="mr-2 px-4 py-2 bg-gray-300 rounded-md">Cancel</button>
-            <button (click)="updateCollectionStatus()" class="px-4 py-2 bg-green-500 text-white rounded-md">
+            <button (click)="updateStatus()" class="px-4 py-2 bg-green-500 text-white rounded-md">
                 Update
             </button>
         </div>
