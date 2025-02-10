@@ -43,7 +43,4 @@ export class LoginComponent {
     });
   }
 
-  logout() {
-    this.store.dispatch(logoutUser());
-  }
 }

@@ -7,8 +7,8 @@
       <div class="flex md:order-2 space-x-3 md:space-x-0 rtl:space-x-reverse">
         <ng-container *ngIf="currentUser$ | async as currentUser; else showRegister">
           <button (click)="logout()" type="button" 
-            class="text-white focus:ring-4 focus:outline-none bg-red-700 focus:ring-red-300 font-medium rounded-lg text-sm px-4 py-2 text-center dark:focus:ring-red-800">
-            Logout
+            class="text-white focus:ring-4 focus:outline-none bg-green-700 focus:ring-red-300 font-medium rounded-lg text-sm px-4 py-2 text-center dark:focus:ring-red-800">
+            Logout 
           </button>
         </ng-container>
       
