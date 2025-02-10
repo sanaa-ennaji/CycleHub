@@ -16,6 +16,7 @@ export class DemandeRequestComponent {
   requestForm: FormGroup;
   isOpen: boolean = false;
   userId: string = ''; 
+  photos: string[] = [];
 
   constructor(private fb: FormBuilder, private store: Store) {
     this.requestForm = this.fb.group({
@@ -41,6 +42,18 @@ export class DemandeRequestComponent {
     this.isOpen = false;
     this.resetForm();
   }
+  onFileSelected(event: any) {
+    const files = event.target.files;
+    if (files.length > 0) {
+      for (let i = 0; i < files.length; i++) {
+        const reader = new FileReader();
+        reader.onload = (e: any) => {
+          this.photos.push(e.target.result); 
+        };
+        reader.readAsDataURL(files[i]);
+      }
+    }
+  }
 
   onSubmit() {
     if (this.requestForm.valid) {
@@ -48,6 +61,7 @@ export class DemandeRequestComponent {
         ...this.requestForm.value,
         id: this.generateId(),
         userId: this.userId, 
+        photos: this.photos,
         status: Status.PENDING
       };
       this.saveToLocalStorage(request);
@@ -57,6 +71,7 @@ export class DemandeRequestComponent {
     }
   }
 
+  
   private generateId(): string {
     return Math.random().toString(36).substr(2, 9);
   }

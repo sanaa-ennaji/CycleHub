@@ -65,6 +65,12 @@
           <label for="additionalNotes" class="block text-sm/6 font-medium text-gray-900">additional Notes:</label>
           <textarea id="additionalNotes" formControlName="additionalNotes" class="col-start-1 row-start-1 w-full appearance-none rounded-md bg-white py-1.5 pr-8 pl-3 text-base text-gray-900 outline-1 -outline-offset-1 outline-gray-300 focus:outline-2 focus:-outline-offset-2 focus:outline-green-600 sm:text-sm/6"></textarea>
         </div>
+
+        <div class="sm:col-span-3">
+          <label for="photos" class="block text-sm/6 font-medium text-gray-900">Upload Photos:</label>
+          <input type="file" id="photos" multiple (change)="onFileSelected($event)" class="block w-full text-sm text-gray-900 border border-gray-300 rounded-md cursor-pointer bg-white focus:outline-none" />
+        </div>
+        
   
         <div class="mt-5 flex justify-between">
           <button type="submit" [disabled]="requestForm.invalid" class="text-white bg-green-700 hover:bg-green-800 focus:ring-4 focus:outline-none focus:ring-green-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800">
