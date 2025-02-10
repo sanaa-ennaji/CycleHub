@@ -7,5 +7,5 @@ import { Component } from '@angular/core';
   styleUrl: './sidebare.component.css'
 })
 export class SidebareComponent {
-  imagePath = 'assets/logo.jpg';
+  imagePath = 'assets/logo.png';
 }
