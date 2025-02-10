@@ -1,13 +1,14 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, NgModule, OnInit } from '@angular/core';
 import { SidebareComponent } from "../../Shared/sidebare/sidebare.component";
 import { Collection } from '../../../models/Collection.model';
 import { Status } from '../../../models/Status.enum';
 import { CommonModule } from '@angular/common';
+import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-collections-list',
   standalone: true,
-  imports: [CommonModule, SidebareComponent],
+  imports: [CommonModule, SidebareComponent, FormsModule],
   templateUrl: './collections-list.component.html',
   styleUrl: './collections-list.component.css'
 })
