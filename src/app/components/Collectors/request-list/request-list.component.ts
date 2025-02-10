@@ -3,11 +3,12 @@ import { SidebareComponent } from "../../Shared/sidebare/sidebare.component";
 import { CommonModule } from '@angular/common';
 import { Collection } from '../../../models/Collection.model';
 import { Status } from '../../../models/Status.enum';
+import { RouterModule } from '@angular/router';
 
 @Component({
   selector: 'app-request-list',
   standalone: true,
-  imports: [SidebareComponent, CommonModule],
+  imports: [SidebareComponent, CommonModule, RouterModule],
   templateUrl: './request-list.component.html',
   styleUrl: './request-list.component.css'
 })
