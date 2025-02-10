@@ -11,7 +11,7 @@ export const collectionReducer = createReducer(
     initialState,
     on(addCollection, (state, { collection }) => {
       const updatedCollections = [...state.collections, collection];
-      localStorage.setItem('collections', JSON.stringify(updatedCollections));
+      
       return { ...state, collections: updatedCollections };
     }),
   on(updateCollection, (state, { id, changes }) => {
