@@ -6,7 +6,7 @@
         <div *ngFor="let collection of pendingCollections" 
              class="bg-white rounded-xl shadow-md overflow-hidden">
             <div class="relative">
-                <img class="w-full h-48 object-cover" src="https://via.placeholder.com/600x360">
+                <img class="w-full h-48 object-cover" [src]="collection.photos?.[0] || 'https://via.placeholder.com/600x360'" alt="Collection Image">
                 <button (click)="reserveCollection(collection)" 
                         class="absolute top-0 right-0 bg-green-500 text-white font-bold px-2 py-1 m-2 rounded-md">
                     Reserve Collection
