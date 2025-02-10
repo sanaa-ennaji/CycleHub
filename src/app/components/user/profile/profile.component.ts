@@ -1,16 +1,18 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators, ReactiveFormsModule } from '@angular/forms';
 import { Store } from '@ngrx/store';
 import { User } from '../../../models/user.model';
 import { AuthState } from '../../../store/auth/auth.state';
 import { updateUser } from '../../../store/auth/auth.actions';
-import { selectCurrentUser } from '../../../store/auth/auth.selectors';
-
+import { selectCurrentUser} from '../../../store/auth/auth.selectors';
+import { CommonModule } from '@angular/common';
 @Component({
   selector: 'app-profile',
+  imports: [ReactiveFormsModule,  CommonModule],
   templateUrl: './profile.component.html',
   styleUrl: './profile.component.css'
 })
+
 export class ProfileComponent implements OnInit {
   profileForm: FormGroup;
   currentUser: User | null = null;
@@ -39,7 +41,6 @@ export class ProfileComponent implements OnInit {
           phoneNumber: user.phoneNumber,
           dateOfBirth: user.dateOfBirth ? new Date(user.dateOfBirth).toISOString().split('T')[0] : '',
         });
-
         this.previewImage = user.profilePicture || null;
       }
     });
