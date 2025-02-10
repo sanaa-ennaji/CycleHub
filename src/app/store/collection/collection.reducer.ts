@@ -9,10 +9,11 @@ export interface CollectionState {
 export const initialState: CollectionState = {
   requests: JSON.parse(localStorage.getItem('collections') || '[]'),
 };
-console.log("Initial State from LocalStorage:", initialState.requests);
+
 export const collectionReducer = createReducer(
   initialState,
   on(addCollection, (state, { collection }) => {
+    console.log("Initial State from LocalStorage:", initialState.requests);
     const updatedRequests = [...state.requests, collection];
     localStorage.setItem('collections', JSON.stringify(updatedRequests));
     return { ...state, requests: updatedRequests };

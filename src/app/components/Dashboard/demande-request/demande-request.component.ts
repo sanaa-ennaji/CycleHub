@@ -44,7 +44,6 @@ export class DemandeRequestComponent {
         id: this.generateId(),
         status: Status.PENDING
       };
-      console.log('Dispatching addRequest action with request:', request);
       this.store.dispatch(addCollection({ collection: request })); 
       this.closeModal();
     } else {
