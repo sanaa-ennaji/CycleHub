@@ -6,6 +6,7 @@ import { SidebareComponent } from './components/Shared/sidebare/sidebare.compone
 import { DemandeListComponent } from './components/Dashboard/demande-list/demande-list.component';
 import { CollectionsListComponent } from './components/Collectors/collections-list/collections-list.component';
 import { ProfileComponent } from './components/user/profile/profile.component';
+import { RequestListComponent } from './components/Collectors/request-list/request-list.component';
 
 
 export const routes: Routes = [
@@ -15,6 +16,7 @@ export const routes: Routes = [
     {path: 'login', component: LoginComponent},
     {path: 'side', component : SidebareComponent},
     {path: 'collectionsList', component: CollectionsListComponent},
+    {path: 'requestList', component: RequestListComponent },
     {path: 'profile', component : ProfileComponent}
 
 ];
