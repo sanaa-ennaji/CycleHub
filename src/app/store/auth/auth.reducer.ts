@@ -1,5 +1,5 @@
 import { createReducer, on } from '@ngrx/store';
-import { registerUser , loginUser, logoutUser, loginFailure, loginSuccess} from './auth.actions';
+import { registerUser , loginUser, logoutUser, loginFailure, loginSuccess, updateUser} from './auth.actions';
 import { AuthState } from './auth.state';
 
 
@@ -52,6 +52,24 @@ import { AuthState } from './auth.state';
         localStorage.removeItem('currentUser');
       }
       return { ...state, currentUser: null };
-    })
+    }),
+
+    on(updateUser, (state, { user }) => {
+      const updatedUsers = state.users.map((u) => (u.id === user.id ? user : u));
+    
+      if (typeof window !== 'undefined') {
+        localStorage.setItem('users', JSON.stringify(updatedUsers));
+        if (state.currentUser?.id === user.id) {
+          localStorage.setItem('currentUser', JSON.stringify(user));
+        }
+      }
+    
+      return {
+        ...state,
+        users: updatedUsers,
+        currentUser: state.currentUser?.id === user.id ? user : state.currentUser,
+      };
+    });
+
   );
   
