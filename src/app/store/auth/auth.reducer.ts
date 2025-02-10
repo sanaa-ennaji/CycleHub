@@ -53,7 +53,7 @@ import { AuthState } from './auth.state';
       }
       return { ...state, currentUser: null };
     }),
-
+// profile
     on(updateUser, (state, { user }) => {
       const updatedUsers = state.users.map((u) => (u.id === user.id ? user : u));
     
