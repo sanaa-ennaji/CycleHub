@@ -1,5 +1,5 @@
 import { createReducer, on } from '@ngrx/store';
-import { registerUser , loginUser, logoutUser, loginFailure, loginSuccess, updateUser} from './auth.actions';
+import { registerUser , loginUser, logoutUser, loginFailure, loginSuccess, updateUser, deleteUser} from './auth.actions';
 import { AuthState } from './auth.state';
 import { generateFakeCollectors } from './CollectorData'; 
 
@@ -57,6 +57,18 @@ const initialState: AuthState = {
       }
       return { ...state, currentUser: null };
     }),
+
+    on(deleteUser, (state, { userId }) => {
+      const updatedUsers = state.users.filter(user => user.id !== userId);
+    
+      if (typeof window !== 'undefined') {
+        localStorage.setItem('users', JSON.stringify(updatedUsers));
+        localStorage.removeItem('currentUser');
+      }
+    
+      return { ...state, users: updatedUsers, currentUser: null };
+    }),
+    
 // profile
     on(updateUser, (state, { user }) => {
       const updatedUsers = state.users.map((u) => (u.id === user.id ? user : u));
