@@ -1,10 +1,7 @@
 import { createReducer, on } from '@ngrx/store';
 import { addCollection, updateCollection, deleteCollection  } from './collection.actions';
-import { Collection } from "../../models/Collection.model";
+import { CollectionState } from './collection.state';
 
-export interface CollectionState {
-  requests: Collection[];
-}
 
 export const initialState: CollectionState = {
   collections: JSON.parse(localStorage.getItem('collections') || '[]'),
@@ -18,14 +15,14 @@ export const collectionReducer = createReducer(
       return { ...state, collections: updatedCollections };
     }),
   on(updateCollection, (state, { id, changes }) => {
-    const updatedRequests = state.requests.map((request) =>
+    const updatedRequests = state.collections.map((request) =>
       request.id === id ? { ...request, ...changes } : request
     );
     localStorage.setItem('collections', JSON.stringify(updatedRequests));
     return { ...state, requests: updatedRequests };
   }),
   on(deleteCollection, (state, { id }) => {
-    const updatedRequests = state.requests.filter((request) => request.id !== id);
+    const updatedRequests = state.collections.filter((request) => request.id !== id);
     localStorage.setItem('collections', JSON.stringify(updatedRequests));
     return { ...state, requests: updatedRequests };
   })
