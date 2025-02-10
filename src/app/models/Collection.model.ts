@@ -12,5 +12,7 @@ export interface Collection {
     additionalNotes?: string;
     status: Status;  
     collectorId?: number;
+    validated?: boolean; 
+
   }
   
