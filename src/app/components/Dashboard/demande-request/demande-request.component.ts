@@ -5,12 +5,11 @@ import { addCollection } from '../../../store/collection/collection.actions';
 import { Collection } from '../../../models/Collection.model';
 import { CommonModule } from '@angular/common';
 import { Status } from '../../../models/Status.enum';
-import { StoreModule } from '@ngrx/store';
-import { collectionReducer } from '../../../store/collection/collection.reducer';
+
 @Component({
   selector: 'app-demande-request',
   standalone: true,
-  imports: [ReactiveFormsModule, CommonModule, ],
+  imports: [ReactiveFormsModule, CommonModule ],
   templateUrl: './demande-request.component.html',
   styleUrls: ['./demande-request.component.css']
 })
@@ -18,7 +17,8 @@ export class DemandeRequestComponent {
   requestForm: FormGroup;
   isOpen: boolean = false;
 
-  constructor(private fb: FormBuilder, private store: Store) {
+  constructor(private fb: FormBuilder,
+     private store: Store) {
     this.requestForm = this.fb.group({
       wasteType: ['', Validators.required],
       estimatedWeight: ['', [Validators.required, Validators.min(1000)]],
