@@ -45,7 +45,6 @@ export class DemandeRequestComponent {
         status: Status.PENDING
       };
 
-    
       this.store.dispatch(addCollection({ collection: request }));
       this.saveToLocalStorage(request);
       // this.closeModal();
