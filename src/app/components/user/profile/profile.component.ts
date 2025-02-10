@@ -72,4 +72,12 @@ export class ProfileComponent implements OnInit {
       this.store.dispatch(updateUser({ user: updatedUser }));
     }
   }
+
+  onDeleteAccount(): void {
+    if (this.currentUser) {
+      if (confirm('Are you sure you want to delete your account? This action cannot be undone.')) {
+        this.store.dispatch(deleteUser({ userId: this.currentUser.id }));
+        this.router.navigate(['/']); 
+      }
+    }
 }
