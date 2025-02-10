@@ -7,6 +7,7 @@ import { updateUser } from '../../../store/auth/auth.actions';
 import { selectCurrentUser} from '../../../store/auth/auth.selectors';
 import { CommonModule } from '@angular/common';
 import { NavbarComponent } from "../../Shared/navbar/navbar.component";
+import { deleteUser } from '../../../store/auth/auth.actions';
 @Component({
   selector: 'app-profile',
   imports: [ReactiveFormsModule, CommonModule, NavbarComponent],
@@ -73,6 +74,13 @@ export class ProfileComponent implements OnInit {
     }
   }
 
+  onDeleteAccount(): void {
+    if (confirm('Are you sure you want to delete your account?')) {
+      const userId = this.currentUser?.id || ''; 
+      this.store.dispatch(deleteUser({ userId }));
+    }
+  }
+  
   
 
 }

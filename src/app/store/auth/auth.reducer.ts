@@ -58,16 +58,18 @@ const initialState: AuthState = {
       return { ...state, currentUser: null };
     }),
 
-    on(deleteUser, (state, { userId }) => {
-      const updatedUsers = state.users.filter(user => user.id !== userId);
-    
-      if (typeof window !== 'undefined') {
-        localStorage.setItem('users', JSON.stringify(updatedUsers));
-        localStorage.removeItem('currentUser');
-      }
-    
-      return { ...state, users: updatedUsers, currentUser: null };
-    }),
+
+  on(deleteUser, (state, { userId }) => {
+  const updatedUsers = state.users.filter(user => user.id !== userId);
+
+  if (typeof window !== 'undefined') {
+    localStorage.setItem('users', JSON.stringify(updatedUsers));
+    localStorage.removeItem('currentUser');
+  }
+
+  return { ...state, users: updatedUsers, currentUser: null };
+}),
+
     
 // profile
     on(updateUser, (state, { user }) => {

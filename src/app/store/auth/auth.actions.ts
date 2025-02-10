@@ -25,6 +25,6 @@ export const registerUser = createAction(
 
   export const deleteUser = createAction(
     '[Auth] Delete User',
-    props<{ userId: number }>()
+    props<{ userId: string }>()
   );
   
