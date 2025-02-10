@@ -6,9 +6,10 @@ import { AuthState } from '../../../store/auth/auth.state';
 import { updateUser } from '../../../store/auth/auth.actions';
 import { selectCurrentUser} from '../../../store/auth/auth.selectors';
 import { CommonModule } from '@angular/common';
+import { NavbarComponent } from "../../Shared/navbar/navbar.component";
 @Component({
   selector: 'app-profile',
-  imports: [ReactiveFormsModule,  CommonModule],
+  imports: [ReactiveFormsModule, CommonModule, NavbarComponent],
   templateUrl: './profile.component.html',
   styleUrl: './profile.component.css'
 })
