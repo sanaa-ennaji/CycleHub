@@ -5,6 +5,7 @@ import { addCollection } from '../../../store/collection/collection.actions';
 import { Collection } from '../../../models/Collection.model';
 import { CommonModule } from '@angular/common';
 import { Status } from '../../../models/Status.enum';
+import { selectCollectionState } from '../../../store/collection/collection.selectors';
 
 @Component({
   selector: 'app-demande-request',
@@ -28,7 +29,11 @@ export class DemandeRequestComponent {
       additionalNotes: ['']
     });
   }
+  ngOnInit(): void {
 
+    const collections = JSON.parse(localStorage.getItem('collections') || '[]');
+    this.store.dispatch(addCollection({ collection: collections }));
+  }
   openModal() {
     this.isOpen = true;
   }
@@ -47,6 +52,7 @@ export class DemandeRequestComponent {
       };
       console.log('Dispatching addCollection action:', request);
       this.store.dispatch(addCollection({ collection: request }));
+      this.saveToLocalStorage();
       // this.closeModal();
     } else {
       console.error('Form is invalid'); 
@@ -59,5 +65,12 @@ export class DemandeRequestComponent {
 
   private resetForm() {
     this.requestForm.reset();
+  }
+
+  private saveToLocalStorage() {
+ 
+    this.store.select(selectCollectionState).subscribe((collections) => {
+      localStorage.setItem('collections', JSON.stringify(collections));
+    });
   }
 }
