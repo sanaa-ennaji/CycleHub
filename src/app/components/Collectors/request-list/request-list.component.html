@@ -1,14 +1,13 @@
 <div class="flex">
     <!-- Sidebar -->
     <app-sidebare class="w-1/5 min-w-[250px]"></app-sidebare>
-
 <div class="flex flex-wrap gap-4 p-10 md:px-20  mt-10">
     <div *ngFor="let collection of collections" class=" bg-white rounded-xl shadow-md overflow-hidden">
         <div class="relative">
             <img class="w-full h-48 object-cover" src="https://via.placeholder.com/600x360">
-            <div  (click)="reserveCollection(collection)" class="absolute top-0 right-0 bg-green-500 text-white font-bold px-2 py-1 m-2 rounded-md">
+            <button  (click)="reserveCollection(collection)" class="absolute top-0 right-0 bg-green-500 text-white font-bold px-2 py-1 m-2 rounded-md">
                 Reseve collection
-            </div>
+            </button>
             <div class="absolute bottom-0 right-0 bg-green-900 text-white px-2 py-1 m-2 rounded-md text-xs">
                 {{ collection.wasteType }}
             </div>

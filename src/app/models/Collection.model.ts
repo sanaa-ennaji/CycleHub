@@ -11,5 +11,6 @@ export interface Collection {
     TimeSlot: string;
     additionalNotes?: string;
     status: Status;  
+    collectorId?: number;
   }
   

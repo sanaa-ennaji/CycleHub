@@ -12,9 +12,11 @@ import { Status } from '../../../models/Status.enum';
 })
 export class RequestListComponent {
   collections: Collection[] = [];
+  currentUser: any = null;
 
   ngOnInit() {
     this.loadCollectionsFromLocalStorage();
+    this.loadCurrentUser();
   }
 
   private loadCollectionsFromLocalStorage() {
@@ -24,13 +26,21 @@ export class RequestListComponent {
     }
   }
 
+  private loadCurrentUser() {
+    const storedUser = localStorage.getItem('currentUser');
+    if (storedUser) {
+      this.currentUser = JSON.parse(storedUser);
+    }
+  }
+
   getStatusLabel(status: number): string {
     return Status[status]; 
   }
 
   reserveCollection(collection: Collection) {
-    if (collection.status === Status.PENDING) {
+    if (collection.status === Status.PENDING && this.currentUser) {
       collection.status = Status.RESERVED;
+      collection.collectorId = this.currentUser.id; 
       this.updateLocalStorage();
     }
   }
