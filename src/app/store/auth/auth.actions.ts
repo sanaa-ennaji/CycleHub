@@ -17,3 +17,8 @@ export const registerUser = createAction(
   export const loginFailure = createAction(
     '[Auth] Login Failure');
   export const logoutUser = createAction('[Auth]Logout User');
+
+  export const updateUser = createAction(
+    '[Auth] Update User',
+    props<{ user: User }>()
+  );
