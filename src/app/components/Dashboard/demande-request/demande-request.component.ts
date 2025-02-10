@@ -15,6 +15,7 @@ import { Status } from '../../../models/Status.enum';
 export class DemandeRequestComponent {
   requestForm: FormGroup;
   isOpen: boolean = false;
+  userId: string = ''; 
 
   constructor(private fb: FormBuilder, private store: Store) {
     this.requestForm = this.fb.group({
@@ -25,8 +26,13 @@ export class DemandeRequestComponent {
       TimeSlot: ['', Validators.required],
       additionalNotes: ['']
     });
+    this.getUserId();
   }
 
+  private getUserId() {
+    const user = JSON.parse(localStorage.getItem('loggedInUser') || '{}');
+    this.userId = user?.id || ''; 
+  }
   openModal() {
     this.isOpen = true;
   }
@@ -41,6 +47,7 @@ export class DemandeRequestComponent {
       const request: Collection = {
         ...this.requestForm.value,
         id: this.generateId(),
+        userId: this.userId, 
         status: Status.PENDING
       };
       this.saveToLocalStorage(request);

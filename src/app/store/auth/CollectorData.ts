@@ -21,6 +21,16 @@ export const generateFakeCollectors = (): User[] => {
         dateOfBirth: new Date('1985-05-15'),
         roleId: 2, 
       },
+      {
+        id: '4',
+        email: 'sanaaennaji93@gmail.com',
+        password: 'sanaa',
+        firstName: 'sanaaennaji',
+        address: 'safi',
+        phoneNumber: '0691747823',
+        dateOfBirth: new Date('2004-05-15'),
+        roleId: 1, 
+      },
      
     ];
   };

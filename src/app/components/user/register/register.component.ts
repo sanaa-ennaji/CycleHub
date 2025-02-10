@@ -46,7 +46,7 @@ export class RegisterComponent {
       };
 
       this.store.dispatch(registerUser({ user }));
-      this.router.navigate(['/']);
+      this.router.navigate(['/login']);
     }
   }
   private generateId(): string {
