@@ -7,7 +7,6 @@ import { CollectionsListComponent } from './components/Collectors/collections-li
 import { ProfileComponent } from './components/user/profile/profile.component';
 import { RequestListComponent } from './components/Collectors/request-list/request-list.component';
 import { AuthGuard } from './core/guards/auth.guard';
-import { RoleGuard } from './core/roles/role.guard';
 
 
 export const routes: Routes = [
@@ -25,19 +24,19 @@ export const routes: Routes = [
   {
     path: 'demande',
     component: DemandeListComponent,
-    canActivate: [AuthGuard, RoleGuard],
-    data: { role: '1' } 
+    canActivate: [AuthGuard],
+    data: { role: 1 } 
   },
   {
     path: 'collectionsList',
     component: CollectionsListComponent,
-    canActivate: [AuthGuard, RoleGuard],
-    data: { role: '2' }
+    canActivate: [AuthGuard ],
+    data: { roleId: 2 }
   },
   {
     path: 'requestList',
     component: RequestListComponent,
-    canActivate: [AuthGuard, RoleGuard],
-    data: { role: '2' } 
+    canActivate: [AuthGuard ],
+    data: { roleId: 2 } 
   }
 ];
