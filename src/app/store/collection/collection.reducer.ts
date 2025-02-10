@@ -14,7 +14,7 @@ export const collectionReducer = createReducer(
   initialState,
   on(addCollection, (state, { collection }) => {
     const updatedCollections = [...state.requests, collection];
-    return { ...state, collections: updatedCollections };
+    return { ...state, requests: updatedCollections }; 
   }),
   on(updateCollection, (state, { id, changes }) => {
     const updatedRequests = state.requests.map((request) =>

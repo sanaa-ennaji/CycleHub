@@ -4,7 +4,7 @@
 <app-demande-request ></app-demande-request>
 </div>
 <div>
-              <div class="overflow-hidden w-[80vw] mt-5 mx-auto">
+              <div class="overflow-hidden w-[80vw] mt-5 mx-auto"  *ngIf="collections.length > 0; else noData">
                   <table class=" min-w-full rounded-xl">
                       <thead>
                           <tr class="bg-green-100">
@@ -13,16 +13,18 @@
                               <th scope="col" class="p-5 text-left text-sm leading-6 font-semibold text-gray-900 capitalize">Address </th>
                               <th scope="col" class="p-5 text-left text-sm leading-6 font-semibold text-gray-900 capitalize"> Date</th>
                               <th scope="col" class="p-5 text-left text-sm leading-6 font-semibold text-gray-900 capitalize"> Time Slot</th>
+                              <th scope="col" class="p-5 text-left text-sm leading-6 font-semibold text-gray-900 capitalize"> status</th>
                               <th scope="col" class="p-5 text-left text-sm leading-6 font-semibold text-gray-900 capitalize rounded-t-xl"> Actions </th>
                           </tr>
                       </thead>
                       <tbody class="divide-y divide-gray-300  ">
-                          <tr class="bg-white transition-all duration-500 hover:bg-gray-50">
-                              <td class="p-5 whitespace-nowrap text-sm leading-6 font-medium text-gray-900 "> Louis Vuitton</td>
-                              <td class="p-5 whitespace-nowrap text-sm leading-6 font-medium text-gray-900"> 20010510 </td>
-                              <td class="p-5 whitespace-nowrap text-sm leading-6 font-medium text-gray-900"> Customer</td>
-                              <td class="p-5 whitespace-nowrap text-sm leading-6 font-medium text-gray-900"> Accessories</td>
-                              <td class="p-5 whitespace-nowrap text-sm leading-6 font-medium text-gray-900"> Accessories</td>
+                          <tr *ngFor="let collection of collections"class="bg-white transition-all duration-500 hover:bg-gray-50">
+                            <td class="p-5 whitespace-nowrap text-sm leading-6 font-medium text-gray-900 "> {{ collection.wasteType }}</td>
+                              <td class="p-5 whitespace-nowrap text-sm leading-6 font-medium text-gray-900 "> {{ collection.estimatedWeight }} kg</td>
+                              <td class="p-5 whitespace-nowrap text-sm leading-6 font-medium text-gray-900">{{ collection.Address }}</td>
+                              <td class="p-5 whitespace-nowrap text-sm leading-6 font-medium text-gray-900"> {{ collection.Date }} </td>
+                              <td class="p-5 whitespace-nowrap text-sm leading-6 font-medium text-gray-900">{{ collection.TimeSlot }}</td>
+                              <td class="p-5 whitespace-nowrap text-sm leading-6 font-medium text-gray-900"> {{ collection.status }}</td>
                               <td class=" p-5 ">
                                   <div class="flex items-center gap-1">
                                       <button class="p-2  rounded-full  group transition-all duration-500  flex item-center">
@@ -48,3 +50,6 @@
               </div>
 </div>
 </div>
+<ng-template #noData>
+    <p>No collections available.</p>
+  </ng-template>
