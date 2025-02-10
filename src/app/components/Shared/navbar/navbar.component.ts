@@ -10,7 +10,7 @@ import { Router } from '@angular/router';
 })
 export class NavbarComponent {
 
-  imagePath = 'assets/logo.jpg';
+  imagePath = 'assets/logo.png';
 
   constructor(private router: Router) {}
   navigateToRegister() {
