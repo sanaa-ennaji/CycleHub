@@ -13,7 +13,7 @@ export const initialState: CollectionState = {
 export const collectionReducer = createReducer(
   initialState,
   on(addCollection, (state, { collection }) => {
-    console.log("Initial State from LocalStorage:", initialState.requests);
+    console.log('is it working') 
     const updatedRequests = [...state.requests, collection];
     localStorage.setItem('collections', JSON.stringify(updatedRequests));
     return { ...state, requests: updatedRequests };
