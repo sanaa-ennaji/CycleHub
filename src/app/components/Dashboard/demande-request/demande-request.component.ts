@@ -9,7 +9,7 @@ import { Status } from '../../../models/Status.enum';
 @Component({
   selector: 'app-demande-request',
   standalone: true,
-  imports: [ReactiveFormsModule, CommonModule ],
+  imports: [ReactiveFormsModule, CommonModule],
   templateUrl: './demande-request.component.html',
   styleUrls: ['./demande-request.component.css']
 })
@@ -17,8 +17,7 @@ export class DemandeRequestComponent {
   requestForm: FormGroup;
   isOpen: boolean = false;
 
-  constructor(private fb: FormBuilder,
-     private store: Store) {
+  constructor(private fb: FormBuilder, private store: Store) {
     this.requestForm = this.fb.group({
       wasteType: ['', Validators.required],
       estimatedWeight: ['', [Validators.required, Validators.min(1000)]],
@@ -45,11 +44,13 @@ export class DemandeRequestComponent {
         id: this.generateId(),
         status: Status.PENDING
       };
-      console.log('Dispatching action:', request); 
+
     
       this.store.dispatch(addCollection({ collection: request }));
-  
-      console.log('Action dispatched');
+      
+      this.saveToLocalStorage(request);
+
+      console.log('is it working');
       // this.closeModal();
     } else {
       console.error('Form is invalid'); 
@@ -62,5 +63,11 @@ export class DemandeRequestComponent {
 
   private resetForm() {
     this.requestForm.reset();
+  }
+
+  private saveToLocalStorage(collection: Collection) {
+    const collections = JSON.parse(localStorage.getItem('collections') || '[]');
+    collections.push(collection);
+    localStorage.setItem('collections', JSON.stringify(collections));
   }
 }

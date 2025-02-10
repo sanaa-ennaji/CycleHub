@@ -13,10 +13,10 @@ export const initialState: CollectionState = {
 export const collectionReducer = createReducer(
   initialState,
   on(addCollection, (state, { collection }) => {
-    console.log('is it working') 
-    const updatedRequests = [...state.requests, collection];
-    localStorage.setItem('collections', JSON.stringify(updatedRequests));
-    return { ...state, requests: updatedRequests };
+    const updatedCollections = [...state.collections, collection];
+    // Optionally store in localStorage from the reducer itself (but not ideal)
+    localStorage.setItem('collections', JSON.stringify(updatedCollections));
+    return { ...state, collections: updatedCollections };
   }),
   on(updateCollection, (state, { id, changes }) => {
     const updatedRequests = state.requests.map((request) =>
