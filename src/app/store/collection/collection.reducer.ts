@@ -7,17 +7,16 @@ export interface CollectionState {
 }
 
 export const initialState: CollectionState = {
-  requests: JSON.parse(localStorage.getItem('collections') || '[]'),
+  collections: JSON.parse(localStorage.getItem('collections') || '[]'),
 };
 
 export const collectionReducer = createReducer(
-  initialState,
-  on(addCollection, (state, { collection }) => {
-    console.log('addCollection action received in reducer');
-    const updatedRequests = [...state.requests, collection];
-    localStorage.setItem('collections', JSON.stringify(updatedRequests));
-    return { ...state, requests: updatedRequests };
-  }),
+    initialState,
+    on(addCollection, (state, { collection }) => {
+      const updatedCollections = [...state.collections, collection];
+      localStorage.setItem('collections', JSON.stringify(updatedCollections));
+      return { ...state, collections: updatedCollections };
+    }),
   on(updateCollection, (state, { id, changes }) => {
     const updatedRequests = state.requests.map((request) =>
       request.id === id ? { ...request, ...changes } : request
