@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators, ReactiveFormsModule } from '@angular/forms';
 import { Store } from '@ngrx/store';
 import { User } from '../../../models/user.model';
 import { AuthState } from '../../../store/auth/auth.state';
@@ -7,7 +7,7 @@ import { updateUser } from '../../../store/auth/auth.actions';
 import { selectCurrentUser} from '../../../store/auth/auth.selectors';
 @Component({
   selector: 'app-profile',
-  imports: [],
+  imports: [ReactiveFormsModule],
   templateUrl: './profile.component.html',
   styleUrl: './profile.component.css'
 })

@@ -1,7 +1,10 @@
-import { createSelector } from '@ngrx/store';
+import { createSelector, createFeatureSelector } from '@ngrx/store';
 import { AuthState } from './auth.state';
 
+
+export const selectAuthState = createFeatureSelector<AuthState>('auth');
+
 export const selectCurrentUser = createSelector(
-  (state: { auth: AuthState }) => state.auth,
+  selectAuthState,
   (auth) => auth.currentUser
 );
