@@ -1,7 +1,7 @@
 export enum Status {
     PENDING,
     RESERVED,
-    IN_PROGRESS,
+    INPROGRESS,
     CONFIRMED,
     CANCELED
   }
