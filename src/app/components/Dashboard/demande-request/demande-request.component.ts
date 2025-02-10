@@ -5,12 +5,11 @@ import { addCollection } from '../../../store/collection/collection.actions';
 import { Collection } from '../../../models/Collection.model';
 import { CommonModule } from '@angular/common';
 import { Status } from '../../../models/Status.enum';
-import { EffectsModule } from '@ngrx/effects'; 
 
 @Component({
   selector: 'app-demande-request',
   standalone: true,
-  imports: [ReactiveFormsModule, CommonModule ,  EffectsModule],
+  imports: [ReactiveFormsModule, CommonModule ],
   templateUrl: './demande-request.component.html',
   styleUrls: ['./demande-request.component.css']
 })
