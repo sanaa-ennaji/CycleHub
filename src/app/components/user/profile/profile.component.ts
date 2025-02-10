@@ -4,7 +4,7 @@ import { Store } from '@ngrx/store';
 import { User } from '../../../models/user.model';
 import { AuthState } from '../../../store/auth/auth.state';
 import { updateUser } from '../../../store/auth/auth.actions';
-
+import { selectCurrentUser} from '../../../store/auth/auth.selectors';
 @Component({
   selector: 'app-profile',
   imports: [],

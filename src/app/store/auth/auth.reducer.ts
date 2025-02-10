@@ -69,7 +69,7 @@ import { AuthState } from './auth.state';
         users: updatedUsers,
         currentUser: state.currentUser?.id === user.id ? user : state.currentUser,
       };
-    });
+    })
 
   );
   
