@@ -8,7 +8,7 @@ import { Status } from '../../../models/Status.enum';
 @Component({
   selector: 'app-demande-list',
   standalone: true,
-  imports: [CommonModule, DemandeRequestComponent, NavbarComponent,],
+  imports: [CommonModule, DemandeRequestComponent, NavbarComponent],
   templateUrl: './demande-list.component.html',
   styleUrls: ['./demande-list.component.css']
 })

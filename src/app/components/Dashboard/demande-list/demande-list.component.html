@@ -24,7 +24,7 @@
                               <td class="p-5 whitespace-nowrap text-sm leading-6 font-medium text-gray-900">{{ collection.Address }}</td>
                               <td class="p-5 whitespace-nowrap text-sm leading-6 font-medium text-gray-900"> {{ collection.Date }} </td>
                               <td class="p-5 whitespace-nowrap text-sm leading-6 font-medium text-gray-900">{{ collection.TimeSlot }}</td>
-                              <td class="p-5 whitespace-nowrap text-sm leading-6 font-medium text-gray-900">   {{ getStatusLabel(collection.status) }}</td>
+                              <td class="p-5 whitespace-nowrap text-sm leading-6 font-medium text-gray-900">{{ getStatusLabel(collection.status) }}</td>
                               <td class=" p-5 ">
                                   <div class="flex items-center gap-1">
                                       <button class="p-2  rounded-full  group transition-all duration-500  flex item-center">
@@ -47,5 +47,5 @@
 </div>
 </div>
 <ng-template #noData>
-    <p>No collections available.</p>
+    <p class="ml-10">No collections available.</p>
   </ng-template>
