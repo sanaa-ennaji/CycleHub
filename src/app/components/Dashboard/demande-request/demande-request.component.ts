@@ -45,7 +45,6 @@ export class DemandeRequestComponent {
         status: Status.PENDING
       };
       this.store.dispatch(addCollection({ collection: request }));
-      console.log('is it working') 
       // this.closeModal();
     } else {
       console.error('Form is invalid'); 
