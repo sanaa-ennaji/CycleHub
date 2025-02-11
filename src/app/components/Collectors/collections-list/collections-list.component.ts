@@ -14,21 +14,45 @@ import { FormsModule } from '@angular/forms';
 })
 export class CollectionsListComponent implements OnInit {
   collections: Collection[] = [];
+  filteredCollections: Collection[] = [];
   selectedCollection: Collection | null = null; 
   statusOptions = Object.values(Status); 
   userPoints: number = 0;
+  collectorId: number = NaN;  
 
   ngOnInit() {
+    this.getCollectorId();  
     this.loadCollectionsFromLocalStorage();
   }
 
+
+  
+  private getCollectorId() {
+    const user = JSON.parse(localStorage.getItem('loggedInUser') || '{}');
+    console.log('Logged in user:', user);  
+    if (user?.collectorId) {
+      this.collectorId = Number(user.collectorId);  
+      console.log('Collector ID:', this.collectorId);  
+      this.collectorId = NaN; 
+    }
+  }
+
+  private filterCollections() {
+    if (!isNaN(this.collectorId)) {
+      this.filteredCollections = this.collections.filter(
+        (collection) => collection.collectorId === this.collectorId
+      );
+    } else {
+      this.filteredCollections = this.collections;  
+    }
+  }
   private loadCollectionsFromLocalStorage() {
     const storedCollections = localStorage.getItem('collections');
     if (storedCollections) {
       this.collections = JSON.parse(storedCollections);
+      this.filteredCollections = this.collections.filter(collection => collection.collectorId === this.collectorId);
     }
   }
-
   getStatusLabel(status: number): string {
     return Status[status];
   }
@@ -41,10 +65,7 @@ export class CollectionsListComponent implements OnInit {
     this.selectedCollection = null;
   }
 
-  private loadUserPoints() {
-    const storedPoints = localStorage.getItem('userPoints');
-    this.userPoints = storedPoints ? parseInt(storedPoints, 10) : 0;
-  }
+
 
   private saveUserPoints() {
     localStorage.setItem('userPoints', this.userPoints.toString());
@@ -74,10 +95,10 @@ export class CollectionsListComponent implements OnInit {
 
   calculatePoints(collection: Collection): number {
     const rate: { [key: string]: number } = {
-      "Plastique": 2,
-      "Verre": 1,
-      "Papier": 1,
-      "Metal": 5
+      "PLASTIC": 2,
+      "GLASS": 1,
+      "PAPER": 1,
+      "METAL": 5
     };
     return (rate[collection.wasteType] || 0) * collection.estimatedWeight;
   }

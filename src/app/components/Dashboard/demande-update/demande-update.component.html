@@ -1,1 +1,59 @@
-<p>demande-update works!</p>
+<!-- Modal Backdrop -->
+<div class="modal-backdrop fixed inset-0 bg-gray-500 bg-opacity-50 flex justify-center items-center z-50" *ngIf="collection">
+    <!-- Modal Content -->
+    <div class="modal-content bg-white p-6 rounded-lg shadow-lg max-w-lg w-full">
+  
+      <!-- Modal Header -->
+      <div class="modal-header flex justify-between items-center mb-4">
+        <h3 class="modal-title text-xl font-semibold">Update Collection</h3>
+        <button class="close-btn text-xl font-bold text-gray-600 hover:text-gray-800" (click)="onCloseModal()">X</button>
+      </div>
+  
+      <!-- Modal Body -->
+      <div class="modal-body mb-4">
+        <form>
+          <div class="mb-4">
+            <label for="wasteType" class="block text-sm font-medium text-gray-700">Waste Type:</label>
+            <input id="wasteType" [(ngModel)]="collection.wasteType" name="wasteType" class="mt-1 p-2 border border-gray-300 rounded-md w-full" />
+          </div>
+  
+          <div class="mb-4">
+            <label for="estimatedWeight" class="block text-sm font-medium text-gray-700">Estimated Weight:</label>
+            <input id="estimatedWeight" [(ngModel)]="collection.estimatedWeight" name="estimatedWeight" class="mt-1 p-2 border border-gray-300 rounded-md w-full" />
+          </div>
+  
+          <div class="mb-4">
+            <label for="Address" class="block text-sm font-medium text-gray-700">Address:</label>
+            <input id="Address" [(ngModel)]="collection.Address" name="Address" class="mt-1 p-2 border border-gray-300 rounded-md w-full" />
+          </div>
+  
+          <div class="mb-4">
+            <label for="Date" class="block text-sm font-medium text-gray-700">Date:</label>
+            <input id="Date" [(ngModel)]="collection.Date" name="Date" type="date" class="mt-1 p-2 border border-gray-300 rounded-md w-full" />
+          </div>
+  
+          <div class="mb-4">
+            <label for="TimeSlot" class="block text-sm font-medium text-gray-700">Time Slot:</label>
+            <input id="TimeSlot" [(ngModel)]="collection.TimeSlot" name="TimeSlot" class="mt-1 p-2 border border-gray-300 rounded-md w-full" />
+          </div>
+  
+          <!-- <div class="mb-4">
+            <label for="status" class="block text-sm font-medium text-gray-700">Status:</label>
+            <select id="status" [(ngModel)]="collection.status" name="status" class="mt-1 p-2 border border-gray-300 rounded-md w-full">
+              <option [value]="1">Reserved</option>
+              <option [value]="2">In Progress</option>
+              <option [value]="3">Confirmed</option>
+              <option [value]="4">Canceled</option> 
+            </select>
+          </div> -->
+        </form>
+      </div>
+  
+      <!-- Modal Footer -->
+      <div class="modal-footer flex justify-end gap-2">
+        <button (click)="onUpdateCollection()" class="px-4 py-2 bg-green-500 text-white rounded-md hover:bg-green-600 transition duration-200">Update</button>
+        <button (click)="onCloseModal()" class="px-4 py-2 bg-gray-300 text-gray-700 rounded-md hover:bg-gray-400 transition duration-200">Cancel</button>
+      </div>
+    </div>
+  </div>
+  

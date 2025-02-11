@@ -2,7 +2,7 @@
     <!-- Sidebar -->
     <app-sidebare class="w-1/5 min-w-[250px]"></app-sidebare>
 
-    <div class="overflow-hidden w-[80vw] mt-20 mx-auto" *ngIf="collections.length > 0; else noData">
+    <div class="overflow-hidden w-[80vw] mt-20 mx-auto" *ngIf="filteredCollections.length > 0; else noData">>
         <!-- User Points Display -->
 <div class="text-right p-5">
     <p class="font-bold text-lg">💰 Mes Points: <span class="text-green-600">{{ userPoints }}</span></p>
